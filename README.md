@@ -20,7 +20,7 @@ A procedure for using photography to estimate key artifact dimensions
 * Upload images to ARC3D web service; pour yourself a cup of coffee
 * In a few minutes to a few hours, if all goes well, ARC3D will send you a textured mech object
 ### Convert the textured mesh to a stereolithography model
-* One way to convert the textured mesh to a stereolithography model is to use a utility called [meshconv](http://www.patrickmin.com/meshconv/) from Patrick Min 
-* Here is the command I used:  ./meshconv textured_mesh.obj -c stl -o stereolithograph
+* One way to convert the textured mesh to a stereolithography model is to use a utility called [meshconv](http://www.patrickmin.com/meshconv/)
+  * ./meshconv textured_mesh.obj -c stl -o stereolithograph
 ### Manipulate and measure the model
 * I did this using the R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0)
