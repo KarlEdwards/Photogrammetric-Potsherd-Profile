@@ -7,5 +7,4 @@ A procedure for using photography to estimate key artifact dimensions
 * Convert the pointcloud to a stereolithography model
 * Manipulate and measure the model
 
-
-https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG
+[![image](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG)]
