@@ -23,4 +23,4 @@ A procedure for using photography to estimate key artifact dimensions
 * One way to convert the textured mesh to a stereolithography model is to use a utility called [meshconv](http://www.patrickmin.com/meshconv/)
   * ./meshconv textured_mesh.obj -c stl -o stereolithograph
 ### Manipulate and measure the model
-* I did this using the R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0)
+* The R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0) provides some handy tools for this purpose
