@@ -7,4 +7,4 @@ A procedure for using photography to estimate key artifact dimensions
 * Convert the pointcloud to a stereolithography model
 * Manipulate and measure the model
 
-\includegraphics[]{illustration_stage.JPG}
+
