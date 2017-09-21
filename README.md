@@ -1,4 +1,4 @@
-# Photogrammetric-Potsherd-Profile
+# Photogrammetric Potsherd Profile
 A procedure for using photography to estimate key artifact dimensions
 
 ## Tools and Materials
