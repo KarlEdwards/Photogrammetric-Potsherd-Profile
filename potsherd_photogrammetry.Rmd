@@ -13,10 +13,8 @@ output: slidy_presentation
 - Estimate key dimensions
 
 ```{r, knitr_options, echo=FALSE}
-knitr::opts_chunk$set(eval = TRUE)
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(include = TRUE)
-knitr::opts_chunk$set(cache = TRUE)
 ```
 
 ## Project-Specific Configuration
@@ -36,4 +34,14 @@ axes[ z_axis ] <- 'z'
 # Wireframe parameters
 stripe_width <- 0.0003
 stripe_tol   <- 0.00003
+```
+## Load Libraries
+```{r, libraries,echo=FALSE}
+# General
+require( rgl )
+require( ggplot2 )
+require( gridExtra )
+require( purrr )
+require( tibble )
+require( lattice )
 ```
