@@ -33,6 +33,7 @@ A procedure for using photography to estimate key artifact dimensions
 * Upload images to ARC3D web service
 * Pour yourself a cup of coffee
 * In a few minutes to a few hours, if all goes well, ARC3D will send you a textured mesh object
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/model.png" width="150">
 
 ### Convert the textured mesh to a stereolithography model
 * Input file: textured_mesh.obj (obtained from ARC3D)
