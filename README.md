@@ -4,7 +4,7 @@ A procedure for using photography to estimate key artifact dimensions
 ## Tools and Materials
 * An artifact to measure
 * Photography
-  * Location with plenty of natural light. See [photography guidelines]
+  * Location with plenty of natural light. See [photography guidelines](https://homes.esat.kuleuven.be/~visit3d/webservice/v2/manual3.php#SEC2)
   * Work table
   * Camera
   * Tripod
