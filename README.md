@@ -26,7 +26,7 @@ A procedure for using photography to estimate key artifact dimensions
 * Adjust the height of the camera on the tripod so the center of the lense is at the same height as the center of the artifact to be photographed
 <img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG" width="500">
 
-### Place the artifact on a turntable and take photographs at 10-degree intervals
+### Place the artifact on the turntable and take photographs at roughly 10-degree intervals
 <img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_every_ten_degrees.png" width="500">
 
 ### Convert the image files to a textured mesh
@@ -36,11 +36,16 @@ A procedure for using photography to estimate key artifact dimensions
 <img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/model.png" width="150">
 
 ### Convert the textured mesh to a stereolithography model
-* Input file: textured_mesh.obj (obtained from ARC3D)
-* Convert to .stl format: -c stl
-* Output file: -o stereolithograph[.stl]
-* Putting it all together into a command:
-  * ./meshconv textured_mesh.obj -c stl -o stereolithograph
+* The conversion utility
+  * meshconv
+* The input file (obtained from ARC3D)
+  * textured_mesh.obj 
+* Desired output format
+  * -c stl
+* Output file
+  * -o stereolithograph[.stl]
+#### Putting it all together into a command:
+./meshconv textured_mesh.obj -c stl -o stereolithograph
 
 ### Manipulate and measure the model
 * The R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0) provides some handy tools for this purpose
