@@ -12,9 +12,9 @@ A procedure for using photography to estimate key artifact dimensions
 * Select a location with plenty of natural light
 * Put dark paper or cloth under and behind the turntable to serve as a backdrop
 * Attach the camera to a tripod and adjust the height so the center of the lense is at the same height as the center of the artifact to be photographed
-![image](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG)
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG" width="500">
 ### Place the artifact on a turntable and take photographs at 10-degree intervals
-![image](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_every_ten_degrees.png)
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_every_ten_degrees.png" width="500">
 ### Convert the image files to a textured mesh
 * If you are not already an ARC3D user, apply for a free account [here](https://homes.esat.kuleuven.be/~visit3d/webservice/v2/request_login.php)
 * Upload images to ARC3D web service; pour yourself a cup of coffee
