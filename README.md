@@ -52,4 +52,4 @@ A procedure for using photography to estimate key artifact dimensions
 <img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/profile_vs_actual.png" width="50">
 
 
-* Here are the  [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.md) and [source](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.R) and [html](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.html)
+* Here are the  [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.md) and [source](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.R)
