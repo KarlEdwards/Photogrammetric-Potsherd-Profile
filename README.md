@@ -50,4 +50,4 @@ A procedure for using photography to estimate key artifact dimensions
 ### Manipulate and measure the model
 * The R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0) provides some handy tools for this purpose
 <img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/profile_vs_actual.png" width="50">
-* Here are the [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.html)
+* Here are the [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.R).
