@@ -6,9 +6,6 @@
 #'    keep_md: TRUE
 #'    fig_caption: yes
 #' ---
-
-#
-
 #' # Configuration
 #+ cfg, include = TRUE
 # Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
@@ -37,21 +34,20 @@ adjust <- function( parameter, val ){
   view( cfg )
 }
 
-background <- function( not_used, bgcolor ) bg3d( bgcolor )
-
-see <- function( obj, limits=c(0,1) ) plot3d( obj, xlim = limits , ylim = limits , zlim = limits ) %>% view( cfg )
-
+background      <- function( not_used, bgcolor ) bg3d( bgcolor )
+see             <- function( obj, limits=c(0,1) ) plot3d( obj, xlim = limits , ylim = limits , zlim = limits ) %>% view( cfg )
 reference_point <- function( not_used, coords=c(0,0,0), ref_color='red' ) points3d( coords[1], coords[2], coords[3], col = ref_color )
-
-move_it <- function( obj, dx, dy, dz ) assign( obj, translate3d( obj=obj, x=dx, y=dy, z=dz ), envir = .GlobalEnv )
+move_it         <- function( obj, dx, dy, dz ) assign( obj, translate3d( obj=obj, x=dx, y=dy, z=dz ), envir = .GlobalEnv )
 
 #' # Demonstration
 filename %>% load_model() -> model
-
 cfg <- configuration( list( theta=-90, phi=-2, fov=25, zoom=1 )  )
-
 model    %>% center() %>% see() %>% background( 'grey' ) %>% reference_point()
- 
+make_figure( 1 )
+#' #### Load the model from file and display it in 3D
+#' <img src="figure1.png" width="300">
+#+
+
 
 
 
@@ -86,10 +82,6 @@ see( squared_model )
 rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
 
 
-#make_figure( 1, model )
-#make_figure( 2, model, 'xy' )
-#make_figure( 3, model, 'zy' )
-#make_figure( 4, model, 'zx' )
 
 #' #### Oblique view of the prototype potsherd
 #' <img src="figure1.png" width="300" alt="Figure 1">
