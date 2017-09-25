@@ -2,6 +2,41 @@
 # Configuration
 
 
+```r
+# Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
+#
+# TO RENDER THIS AS HTML:
+#   setwd( '~/Dropbox/Projects/Potsherd/example' )
+#   library('rmarkdown')
+#   rmarkdown::render('demonstration.R')
+
+source( 'functions_basic.R' )
+source( 'functions_contour.R' )
+source( 'configuration.R' )
+source( 'cache_cfg.R' )
+source( 'cache_model.R' )
+
+
+view <- function( not_used, vp ) rgl.viewpoint(
+    theta = vp$get()$theta
+  , phi = vp$get()$phi
+  , fov = vp$get()$fov
+  , zoom = vp$get()$zoom
+)
+
+adjust <- function( parameter, val ){
+  cfg$set( parameter, val )
+  view( cfg )
+}
+
+background <- function( not_used, bgcolor ) bg3d( bgcolor )
+
+see <- function( obj, limits=c(0,1) ) plot3d( obj, xlim = limits , ylim = limits , zlim = limits ) %>% view( cfg )
+
+reference_point <- function( not_used, coords=c(0,0,0), ref_color='red' ) points3d( coords[1], coords[2], coords[3], col = ref_color )
+
+move_it <- function( obj, dx, dy, dz ) assign( obj, translate3d( obj=obj, x=dx, y=dy, z=dz ), envir = .GlobalEnv )
+```
 
 # Demonstration
 
@@ -107,5 +142,5 @@ Points **A**(h) and **B**(h) are any two points along the perimeter at the same 
 ---
 title: "demonstration.R"
 author: "Karl"
-date: "Mon Sep 25 11:05:20 2017"
+date: "Mon Sep 25 11:37:30 2017"
 ---
