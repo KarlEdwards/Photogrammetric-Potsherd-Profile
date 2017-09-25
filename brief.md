@@ -1,11 +1,12 @@
 
 
 
-### End of YAML header
+# Draft Photography-to-Model Procedure and Analysis
 <br>
 
 
 ```r
+source( 'functions_basic.R' )
 limits <- c( 0, 1 )
 
 # Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
@@ -13,7 +14,7 @@ limits <- c( 0, 1 )
 # TO RENDER THIS AS HTML:
 #   setwd( '~/Dropbox/Projects/Potsherd/example' )
 #   library('rmarkdown')
-#   rmarkdown::render('demonstration.R')
+#   rmarkdown::render('brief.R')
 ```
 
 
@@ -23,5 +24,5 @@ limits <- c( 0, 1 )
 ---
 title: "brief.R"
 author: "Karl"
-date: "Mon Sep 25 11:17:02 2017"
+date: "Mon Sep 25 11:27:39 2017"
 ---

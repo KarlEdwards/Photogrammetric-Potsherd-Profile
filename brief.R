@@ -8,8 +8,10 @@
 #' ---
 
 #+ demo, echo = TRUE, include = TRUE
-#' ### End of YAML header
+#' # Draft Photography-to-Model Procedure and Analysis
 #' <br>
+
+source( 'functions_basic.R' )
 limits <- c( 0, 1 )
 
 # Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
@@ -17,7 +19,7 @@ limits <- c( 0, 1 )
 # TO RENDER THIS AS HTML:
 #   setwd( '~/Dropbox/Projects/Potsherd/example' )
 #   library('rmarkdown')
-#   rmarkdown::render('demonstration.R')
+#   rmarkdown::render('brief.R')
 
 #+ setup, echo = TRUE, include = TRUE
 #' ### START HERE
