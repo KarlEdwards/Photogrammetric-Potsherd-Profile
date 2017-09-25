@@ -107,5 +107,5 @@ Points **A**(h) and **B**(h) are any two points along the perimeter at the same 
 ---
 title: "demonstration.R"
 author: "Karl"
-date: "Mon Sep 25 10:56:51 2017"
+date: "Mon Sep 25 11:05:20 2017"
 ---

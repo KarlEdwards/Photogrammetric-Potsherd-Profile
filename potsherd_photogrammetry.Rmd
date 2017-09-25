@@ -2,7 +2,11 @@
 title: "Potsherd Photogrammetry"
 author: "Karl Edwards"
 date: "September 20, 2017"
-output: slidy_presentation
+output:
+  github_document:
+    html_preview: true
+    toc: true
+    toc_depth: 2
 ---
 
 ## Overview
@@ -12,14 +16,14 @@ output: slidy_presentation
 - Plot the profile
 - Estimate key dimensions
 
-```{r, knitr_options, echo=FALSE}
+```{r, knitr_options, echo = FALSE, include = FALSE, cache = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(include = TRUE)
+knitr::opts_chunk$set(error = TRUE)
 ```
 
 ## Project-Specific Configuration
 ```{r project_specific_configuration}
-## NO setwd( '~/Dropbox/Projects/Potsherd' )
 filename <- 'stereolithograph.stl'
 
 # Convenient names to improve readability
@@ -36,7 +40,7 @@ stripe_width <- 0.0003
 stripe_tol   <- 0.00003
 ```
 ## Load Libraries
-```{r, libraries,echo=FALSE}
+```{r, libraries,echo=TRUE,include=TRUE,results='as-is'}
 # General
 require( rgl )
 require( ggplot2 )
