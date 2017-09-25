@@ -21,8 +21,7 @@ source( 'configuration.R' )
 source( 'cache_cfg.R' )
 source( 'cache_model.R' )
 
-
-view <- function( not_used, vp ) rgl.viewpoint(
+view <- function( vp=cfg ) rgl.viewpoint(
     theta = vp$get()$theta
   , phi = vp$get()$phi
   , fov = vp$get()$fov
@@ -34,66 +33,74 @@ adjust <- function( parameter, val ){
   view( cfg )
 }
 
-background      <- function( not_used, bgcolor ) bg3d( bgcolor )
-see             <- function( obj, limits=c(0,1) ) plot3d( obj, xlim = limits , ylim = limits , zlim = limits ) %>% view( cfg )
-reference_point <- function( not_used, coords=c(0,0,0), ref_color='red' ) points3d( coords[1], coords[2], coords[3], col = ref_color )
+background      <- function( bgcolor ) bg3d( bgcolor )
+see             <- function( obj, config, limits=c(0,1) ){
+  clear3d()
+  plot3d( obj, xlim = limits , ylim = limits , zlim = limits )
+  view( config )
+}
+reference_point <- function( coords=c(0,0,0), ref_color='red' ) points3d( coords[1], coords[2], coords[3], col = ref_color )
 move_it         <- function( obj, dx, dy, dz ) assign( obj, translate3d( obj=obj, x=dx, y=dy, z=dz ), envir = .GlobalEnv )
 
 #' # Demonstration
-filename %>% load_model() -> model
-cfg <- configuration( list( theta=-90, phi=-2, fov=25, zoom=1 )  )
-model    %>% center() %>% see() %>% background( 'grey' ) %>% reference_point()
-make_figure( 1 )
 #' #### Load the model from file and display it in 3D
-#' <img src="figure1.png" width="300">
-#+
+filename %>% load_model() -> model
 
+# Front view
+cfg <- configuration( list( theta=0, phi=0, fov=25, zoom=1 )  )
+model    %>% center() -> centered_model
+see( centered_model, cfg )
+background( 'grey' )
+reference_point()
+make_figure( 'front_view' )
 
+# Rotate to obtain end views
+adjust( 'theta', -90 )
+make_figure( 'end_view_1' )
+adjust( 'theta',  90 )
+make_figure( 'end_view_2' )
 
-
-see( model ) %>%
-  reference_point()
-
-
-see( model, limits=c(-1,1)) %>%
-  reference_point( coords=c(0.75,0.75,0.75), ref_color='red')
+# Tilt to obtain top view
+adjust( 'phi',85 )
+adjust( 'theta', 180 )
+make_figure( 'top_view' )
 
 
 # Move the model into the corner and then display it
-squared_model <- name_axes(
-  translate3d(
-      center( model )
-    , x=0, y=0, z=0.4
-  )
-)
-see( squared_model )
-rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
+#squared_model <- name_axes(
+#  translate3d(
+#      center( model )
+#    , x=0, y=0, z=0.4
+#  )
+#)
+#see( squared_model )
+#rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
 
-squared_model <- name_axes(
-  center(
-  #  clip_at( 
-    rotate3d(
-        squared_model
-      , 20*pi/180,x=1,y=0,z=0
-    )
-  )
-)
-see( squared_model )
-rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
+#squared_model <- name_axes(
+#  center(
+#  #  clip_at( 
+#    rotate3d(
+#        squared_model
+#      , 20*pi/180,x=1,y=0,z=0
+#    )
+#  )
+#)
+#make_figure( 'squared' )
 
-
-
-#' #### Oblique view of the prototype potsherd
-#' <img src="figure1.png" width="300" alt="Figure 1">
-#+
-
-#' #### Front and Side Views
-#' <img src="figure2.png" width="300" alt="Figure 2">
-#' <img src="figure3.png" width="300">
-#+
+#see( squared_model )
+#rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
 
 #' #### Top view
-#' <img src="figure4.png" width="300">
+#' <img src="top_view.png" width="300">
+#+
+
+#' #### Front View
+#' <img src="front_view.png" width="300">
+#+
+
+#' #### End Views
+#' <img src="end_view_1.png" width="300">
+#' <img src="end_view_2.png" width="300">
 #+
 
 #' ### Observations
