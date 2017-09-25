@@ -7,9 +7,10 @@
 #'    fig_caption: yes
 #' ---
 
-#' <br>
+#
+
 #' # Configuration
-#+ setup, include = TRUE
+#+ cfg, include = TRUE
 # Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
 #
 # TO RENDER THIS AS HTML:
