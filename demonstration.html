@@ -146,12 +146,13 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">demonstration.R</h1>
 <h4 class="author"><em>Karl</em></h4>
-<h4 class="date"><em>Mon Sep 25 11:47:47 2017</em></h4>
+<h4 class="date"><em>Mon Sep 25 11:53:17 2017</em></h4>
 
 </div>
 
 <div id="TOC">
 <ul>
+<li><a href="#configuration">Configuration</a></li>
 <li><a href="#demonstration">Demonstration</a><ul>
 <li><a href="#observations">Observations</a></li>
 <li><a href="#adjust-the-model-to-be-plum-level-and-square-with-the-x--y--and-z-axes">Adjust the model to be plum, level, and square with the X-, Y-, and Z-axes</a></li>
@@ -159,7 +160,9 @@ $(document).ready(function () {
 </ul>
 </div>
 
-<p><br> # Configuration</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#</span></code></pre></div>
+<div id="configuration" class="section level1">
+<h1>Configuration</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code</span>
 <span class="co">#</span>
 <span class="co"># TO RENDER THIS AS HTML:</span>
@@ -193,6 +196,7 @@ see &lt;-<span class="st"> </span>function( obj, <span class="dt">limits=</span>
 reference_point &lt;-<span class="st"> </span>function( not_used, <span class="dt">coords=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="dt">ref_color=</span><span class="st">'red'</span> ) <span class="kw">points3d</span>( coords[<span class="dv">1</span>], coords[<span class="dv">2</span>], coords[<span class="dv">3</span>], <span class="dt">col =</span> ref_color )
 
 move_it &lt;-<span class="st"> </span>function( obj, dx, dy, dz ) <span class="kw">assign</span>( obj, <span class="kw">translate3d</span>( <span class="dt">obj=</span>obj, <span class="dt">x=</span>dx, <span class="dt">y=</span>dy, <span class="dt">z=</span>dz ), <span class="dt">envir =</span> .GlobalEnv )</code></pre></div>
+</div>
 <div id="demonstration" class="section level1">
 <h1>Demonstration</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">filename %&gt;%<span class="st"> </span><span class="kw">load_model</span>() -&gt;<span class="st"> </span>model
