@@ -1,6 +1,4 @@
 #' ---
-#' title: "Photogrammetric Potsherd Profile Demonstration"
-#' author: "Karl Edwards"
 #' output:
 #'   html_document:
 #'    toc: true
@@ -15,159 +13,82 @@
 # Style adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
 #
 # TO RENDER THIS AS HTML:
+#   setwd( '~/Dropbox/Projects/Potsherd/example' )
 #   library('rmarkdown')
 #   rmarkdown::render('demonstration.R')
 
-# Load Libraries
-require( rgl )
-require( ggplot2 )
-require( grid )
-require( gridExtra )
-require( purrr )
-require( tibble )
-require( lattice )
-
-# Names for convenience and readability
-x_axis         <- 1
-y_axis         <- 2
-z_axis         <- 3
-axes           <- 1:3
-axes[ x_axis ] <- 'x'
-axes[ y_axis ] <- 'y'
-axes[ z_axis ] <- 'z'
-
-# Wireframe parameters
-stripe_width   <- 0.0003
-stripe_tol     <- 0.00003
-
-# Data file
-filename <- 'stereolithograph.stl'
+source( 'functions_basic.R' )
+source( 'functions_contour.R' )
+source( 'configuration.R' )
+source( 'cache_cfg.R' )
+source( 'cache_model.R' )
 
 
+view <- function( not_used, vp ) rgl.viewpoint(
+    theta = vp$get()$theta
+  , phi = vp$get()$phi
+  , fov = vp$get()$fov
+  , zoom = vp$get()$zoom
+)
 
-#' # Functions
-# Get the data; don't plot
-load_model <- function( filename ){
-  model <- readSTL( filename, plot=FALSE )
-  colnames( model ) <- axes
-  model
+adjust <- function( parameter, val ){
+  cfg$set( parameter, val )
+  view( cfg )
 }
 
-# Move the model into the corner of [ X, Y, Z ] = [ 0, 0, 0 ]
-scoot <- function( model ) apply( model, 2, function(f) f - min( f ))
+background <- function( not_used, bgcolor ) bg3d( bgcolor )
 
-# Cut off the top/bottom, front/back, or left/right sides of the model
-clip_at <- function( obj, ax, mn, mx ) obj[ obj[ ,ax ] > mn & obj[ ,ax ] < mx, ]
+see <- function( obj, limits=c(0,1) ) plot3d( obj, xlim = limits , ylim = limits , zlim = limits ) %>% view( cfg )
 
-# Alternatively, clip a thin band out of the middle, and keep that portion that was removed
-get_band <- function( m=model, a=y_axis, b=0.5, w=stripe_width ){
-  band <- clip_at( m, a, b - w, b + w )
-  colnames( band ) <- axes
-  band
-}
+reference_point <- function( not_used, coords=c(0,0,0), ref_color='red' ) points3d( coords[1], coords[2], coords[3], col = ref_color )
 
-# Show bounding box
-in_a_box <- function(){
-  rgl.bbox(
-      color = c( '#333377', 'black' )
-    , emission = '#333377'
-    , specular = '#3333FF'
-    , shininess=5
-    , alpha=0.8
-    , nticks = 3
-  )
-}
-
-# Show the model from a particular point of view
-make_figure <- function( fig_index, obj, viewpoint = 'oblique', limits = c( 0, 1 ) ){
-
-  views  <- tribble(
-    # ________   _____   _____   _____   _____
-      ~name    , ~xrot , ~yrot , ~zrot , ~zoom
-    , 'oblique',   55  ,  -15  ,   45  ,   1
-    , 'zy'     ,   90  ,  -0.5,    1  ,   1
-    , 'zx'     ,    0  ,   90  ,    1  ,   1
-    , 'xy'     ,    0.5,  -0.1,    0.5,   1
-  )
-  stopifnot( viewpoint %in% views[[ 'name' ]] )
-  view_parameters <- views[ views[ 'name' ] == viewpoint, ]
-
-  clear3d()                        # Start with nothing
-  bg3d( 'lightgray' )              # Set background color
-  plot3d(                          # Show the model
-      obj
-    , xlim = limits
-    , ylim = limits
-    , zlim = limits
-  )
-  points3d( 0, 0, 0, col = 'red' ) # Highlight the origin
-  axes3d()                         # Show the axes
-  in_a_box()                       # Show bounding box
-  text3d( x=0.75, y=0.75, z=0.75, text=paste0( 'View ', viewpoint ) ,col="Blue")
-
-  rgl.viewpoint(                   # Set the viewpoint
-      theta = view_parameters[ 2 ]
-    , phi   = view_parameters[ 3 ]
-    , fov   = view_parameters[ 4 ]
-    , zoom  = view_parameters[ 5 ]
-  )
-  rgl.snapshot( filename = paste0( 'figure', as.character( fig_index ), '.png' ))
-}
-
-# Identify the slice having the highest density of points
-best_slice <- function( model, ax ){
-  breaks <- 100
-  data <- model[ , ax ]
-  h <- hist( data, breaks=breaks, plot = FALSE )
-  biggest_slice <- which(h$counts==max(h$counts))
-  h$mids[ biggest_slice ]
-}
-best_x <- best_slice( model, x_axis )
-best_y <- best_slice( model, y_axis )
-best_z <- best_slice( model, z_axis )
-
-# Show rotation in grey
-transrotate <- function( obj, deg, u=0, v=0, w=0, x=0, y=0, z=0, color='darkgrey' ){
-  limits <- c( 0, 1 )
-  points3d(
-    translate3d(
-        rotate3d( obj=obj, angle=deg*pi/180, x=u, y=v, z=w )
-      , x=x, y=y, z=z
-    )
-    , col=color
-    , xlim = limits
-    , ylim = limits
-    , zlim = limits
-  )
-}
-
-# Show rotation in grey
-transslice <- function( obj, ax=y_axis, h=0.5, x=0, y=0, z=0, color='darkgrey' ){
-  limits <- c( 0, 1 )
-  points3d(
-    translate3d(
-        get_band( m=obj, a=ax,b=h*max(obj[,ax]), w=4*stripe_width )
-      , x=x, y=y, z=z
-    )
-    , col=color
-    , xlim = limits
-    , ylim = limits
-    , zlim = limits
-  )
-}
+move_it <- function( obj, dx, dy, dz ) assign( obj, translate3d( obj=obj, x=dx, y=dy, z=dz ), envir = .GlobalEnv )
 
 #' # Demonstration
-# Load the model data
-model <- readSTL( filename, plot=FALSE )
+filename %>% load_model() -> model
+
+cfg <- configuration( list( theta=-90, phi=-2, fov=25, zoom=1 )  )
+
+model    %>% center() %>% see() %>% background( 'grey' ) %>% reference_point()
+ 
+
+
+
+see( model ) %>%
+  reference_point()
+
+
+see( model, limits=c(-1,1)) %>%
+  reference_point( coords=c(0.75,0.75,0.75), ref_color='red')
+
 
 # Move the model into the corner and then display it
-model <- scoot( model )
-colnames( model ) <- axes
+squared_model <- name_axes(
+  translate3d(
+      center( model )
+    , x=0, y=0, z=0.4
+  )
+)
+see( squared_model )
+rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
 
-make_figure( 1, model )
-make_figure( 2, model, 'xy' )
-make_figure( 3, model, 'zy' )
-make_figure( 4, model, 'zx' )
+squared_model <- name_axes(
+  center(
+  #  clip_at( 
+    rotate3d(
+        squared_model
+      , 20*pi/180,x=1,y=0,z=0
+    )
+  )
+)
+see( squared_model )
+rgl.viewpoint( theta=-90,phi=-2,fov=25,zoom=1)
+
+
+#make_figure( 1, model )
+#make_figure( 2, model, 'xy' )
+#make_figure( 3, model, 'zy' )
+#make_figure( 4, model, 'zx' )
 
 #' #### Oblique view of the prototype potsherd
 #' <img src="figure1.png" width="300" alt="Figure 1">
@@ -191,70 +112,6 @@ make_figure( 4, model, 'zx' )
 
 #' ### Adjust the model to be plum, level, and square with the X-, Y-, and Z-axes 
 
-best_x
-best_y
-best_z
-
-left_side <- clip_at( model, x_axis, 0, best_x ) 
-band_x <- get_band( m=model, a=x_axis,b=best_x, w=4*stripe_width )
-right_side <- clip_at( model, x_axis, best_x, 1 ) 
-make_figure( 5, left_side, 'xy' )
-
-# Show rotation in grey
-make_figure( 5, left_side, 'xy' )
-rot <- list( 0, 15, 30, 45, 90 )
-ofs <- list( 0.1, 0.2, 0.35, 0.5, 0.8 )
-clr <- list( 'grey', 'grey', 'darkgrey', 'darkgrey', 'black' )
-
-pwalk(
-  list( rot, ofs, clr )
-  , function( rot, ofs, clr ) transrotate(
-      obj=band_x, deg=rot, u=0, v=1, w=0, x=ofs, y=0, z=0, color=clr
-    )
-)
-rgl.snapshot( filename = paste0( 'figure', as.character( 5 ), '.png' ))
-
-make_figure( 6, right_side, 'xy' )
-
-#' <img src="figure5.png" width="200">
-#' <img src="figure6.png" width="200">
-#' <br>
-#+
-
-
-top <- clip_at( model, y_axis, 0, best_y ) 
-band_y <- get_band( m=model, a=y_axis,b=best_y, w=4*stripe_width )
-bottom <- clip_at( model, y_axis, best_y, 1 ) 
-
-# Show front view, then slice horizontally at various heights
-#' <img src="figure2.png" width="300" alt="Figure 2">
-
-limits <- c( 0, 1 )
-tilted_model <- rotate3d(model,20*pi/180,x=1,y=0,z=1)
-plot3d( 
-  get_band( m=tilted_model, a=y_axis, b=0.05, w=4*stripe_width )
-    , col='grey'
-    , xlim = limits
-    , ylim = limits
-    , zlim = limits
-)
-
-heights <- as.list( seq( from=0.9, to = 0.1, length.out = 5 ))
-offsets <- list( 0.2, 0.3, 0.4, 0.6, 0.75)
-
-pwalk(
-    list( heights, offsets, clr )
-  , function( heights, offsets, clr ) transslice( tilted_model, ax=y_axis, h=heights, x=0, y=0, z=offsets, color=clr )
-)
-
-rgl.snapshot( filename = paste0( 'figure', as.character( 5 ), '.png' ))
-
-make_figure( 8, bottom, 'zx' )
-
-#' <img src="figure7.png" width="200">
-#' <img src="figure8.png" width="200">
-#' <br>
-#+
 
 
 #' The profile, **P**, comprises points $p_0, p_1, p_2, ... p_n$, which lie on the perimeter of the pot
