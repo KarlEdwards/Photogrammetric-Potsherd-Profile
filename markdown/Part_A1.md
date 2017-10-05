@@ -15,7 +15,7 @@
 * Put dark paper or cloth under and behind the turntable to serve as a backdrop
 * Adjust the height of the camera on the tripod so the center of the lense is at the same height as the center of the artifact to be photographed
 
-<img src="markdown/images/illustration_stage.jpg" width="500">
+<img src="./images/illustration_stage.jpg" width="500">
 
 ### Photograph each artifact
 
@@ -24,4 +24,4 @@
 * To minimize distortion, place the artifact so that the center of the rim (or base) is approximately on the center of the turntable
 * Take a series of photographs at roughly 10-degree intervals, resulting in 36 images per artifact
 
-<img src="markdown/images/every_ten_degrees.png" width="500">
+<img src="./images/every_ten_degrees.png" width="500">
