@@ -1,55 +1,31 @@
-# Photogrammetric Potsherd Profile
-A procedure for using photography to estimate key artifact dimensions
+---
+title: "Computer-Assisted Potsherd Classification"
+output:
+  html_document:
+   toc: true
+   highlight: tango
+   css: styles.css
+---
+## How archaeologists can use photogrammetry and machine learning to efficiently classify a large number of potsherds
 
-## Tools and Materials
-* An artifact to measure
-* Photography
-  * Location with plenty of natural light. See [photography guidelines](https://homes.esat.kuleuven.be/~visit3d/webservice/v2/manual3.php#SEC2)
-  * Work table
-  * Camera
-  * Tripod
-  * Turntable
-  * Dark background
-* ARC3D Account
-  * If you are not already an ARC3D user, apply for a free account [here](https://homes.esat.kuleuven.be/~visit3d/webservice/v2/request_login.php)
-* Utility: [meshconv](http://www.patrickmin.com/meshconv/)
-* R, with these packages
-  * rgl
-  * ggplot2
-  * purrr
-  * tibble
-  * lattice
+### A. Data Acquisition
+1. [Photography](Part_A1.html)
+2. [Three-Dimensional Model](Part_A2.html)
+3. [Pre-Processing](Part_A3.html)
+4. Measurement
+5. Feature Matrix **X**
 
-## Procedure
-### Set the Stage
-* Put dark paper or cloth under and behind the turntable to serve as a backdrop
-* Adjust the height of the camera on the tripod so the center of the lense is at the same height as the center of the artifact to be photographed
-<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG" width="500">
+### B. Unsupervised Clustering
+1. Feature Definition
+2. Feature Similarity
+3. Pairwise Object Similarity
 
-### Place the artifact on the turntable and take photographs at roughly 10-degree intervals
-<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_every_ten_degrees.png" width="500">
+### C. Semi-Supervised Feature Selection
+1. Feature Weight Computation
+2. Provisional Prototypes
+3. Dimensionality Reduction
 
-### Convert the image files to a textured mesh
-* Upload images to ARC3D web service
-* Pour yourself a cup of coffee
-* In a few minutes to a few hours, if all goes well, ARC3D will send you a textured mesh object
-<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/model.png" width="150">
-
-### Convert the textured mesh to a stereolithography model
-* The conversion utility
-  * meshconv
-* The input file (obtained from ARC3D)
-  * textured_mesh.obj 
-* Desired output format
-  * -c stl
-* Output file
-  * -o stereolithograph[.stl]
-#### Putting it all together into a command:
-./meshconv textured_mesh.obj -c stl -o stereolithograph
-
-### Manipulate and measure the model
-* The R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0) provides some handy tools for this purpose
-<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/profile_vs_actual.png" width="50">
-
-
-* Here are the  [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.md) and [source](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.R)
+### D. Supervised Provisional Classification
+1. CART
+2. ID3
+3. C4.5
