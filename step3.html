@@ -1,0 +1,67 @@
+<h2 id="find-the-center-of-the-base-i.e.-axis-of-rotation">Find the center of the base, i.e., axis of rotation</h2>
+<h4 id="retrieve-saved-perimeter-data">Retrieve Saved Perimeter Data</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">perimeter_data &lt;-<span class="st"> </span><span class="kw">readRDS</span>( PERIMETER_FILE )</code></pre></div>
+<h4 id="plot-perimeter-data">Plot perimeter data</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>( perimeter_data, <span class="kw">aes</span>( <span class="dt">x =</span> perimeter_x, <span class="dt">y =</span> perimeter_y, <span class="dt">color =</span> height )) +
+<span class="st">  </span><span class="kw">geom_point</span>() +
+<span class="st">  </span><span class="kw">xlim</span>( <span class="dv">0</span>, <span class="dv">1</span> ) +
+<span class="st">  </span><span class="kw">ylim</span>( <span class="dv">0</span>, <span class="dv">1</span> )</code></pre></div>
+<div class="figure">
+<img src="step3_files/figure-markdown_github-ascii_identifiers/plot_perimeter_data-1.png" />
+
+</div>
+<h4 id="choose-two-points-along-the-perimeter-of-the-pot-at-the-selected-heights">Choose two points along the perimeter of the pot at the selected height(s)</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Choose a height, from which to estimate the axis of rotation</span>
+selected_height_index &lt;-<span class="st"> </span><span class="dv">4</span> <span class="co"># length( heights )</span>
+
+find_center &lt;-<span class="st"> </span>function( p, h ){
+
+  <span class="co"># Extract perimeter points at height, h</span>
+  perimeter &lt;-<span class="st"> </span>p[ p[ , <span class="st">&#39;height&#39;</span> ] ==<span class="st"> </span>h, <span class="kw">c</span>( <span class="st">&#39;perimeter_x&#39;</span>, <span class="st">&#39;perimeter_y&#39;</span> ) ]
+  
+  <span class="co"># If an insufficient number of perimeter points exist at height, h, return result unknown,</span>
+  <span class="co"># otherwise, find the center and radius</span>
+  if( <span class="kw">nrow</span>( perimeter ) &gt;<span class="st"> </span><span class="dv">2</span> ){
+  
+    <span class="co"># Calculate the slope of each segment defined by each consecutive pair of perimeter points</span>
+    delta_y &lt;-<span class="st"> </span><span class="dv">2</span>:<span class="kw">nrow</span>( perimeter ) %&gt;%<span class="st">  </span><span class="kw">map_dbl</span>( ~perimeter[ .x, Y_AXIS ] -<span class="st"> </span>perimeter[ .x<span class="dv">-1</span>, Y_AXIS ] )
+    delta_x &lt;-<span class="st"> </span><span class="dv">2</span>:<span class="kw">nrow</span>( perimeter ) %&gt;%<span class="st">  </span><span class="kw">map_dbl</span>( ~perimeter[ .x, X_AXIS ] -<span class="st"> </span>perimeter[ .x<span class="dv">-1</span>, X_AXIS ] )
+    slopes &lt;-<span class="st"> </span>delta_y /<span class="st"> </span>delta_x
+    slopes
+    N &lt;-<span class="st"> </span><span class="kw">length</span>( slopes )
+    ray1 &lt;-<span class="st"> </span><span class="kw">get_perpendicular2D</span>( <span class="dt">m =</span> slopes[ <span class="dv">1</span> ], <span class="dt">P =</span> perimeter_points[ <span class="dv">2</span>, ] )
+    ray2 &lt;-<span class="st"> </span><span class="kw">get_perpendicular2D</span>( <span class="dt">m =</span> slopes[ N ], <span class="dt">P =</span> perimeter_points[ N<span class="dv">-1</span>, ] )
+    est_ctr &lt;-<span class="st"> </span><span class="kw">get_intersection2D</span>( ray1, ray2 )
+    est_radius &lt;-<span class="st"> </span><span class="kw">euclidean_distance</span>( est_ctr, perimeter_points[ <span class="dv">2</span>, ] )
+    result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+      <span class="dt">h =</span> h, <span class="dt">ctrX =</span> est_ctr$x, <span class="dt">ctrY =</span> est_ctr$y, <span class="dt">r =</span> est_radius
+    )
+  } else {
+    result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+      <span class="dt">h =</span> h, <span class="dt">ctrX =</span> <span class="ot">NA</span>, <span class="dt">ctrY =</span> <span class="ot">NA</span>, <span class="dt">r =</span> <span class="ot">NA</span>
+    )
+  }
+  <span class="kw">lapply</span>( result[ <span class="kw">complete.cases</span>( result ), ], round, <span class="dv">2</span> )
+}
+
+heights %&gt;%<span class="st"> </span><span class="kw">map_df</span>( ~<span class="kw">find_center</span>( perimeter_data, . )) -&gt;<span class="st"> </span>radii
+radii</code></pre></div>
+<pre><code>## # A tibble: 9 x 4
+##       h  ctrX  ctrY     r
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  0.10  0.44  0.68  0.56
+## 2  0.15  0.28  0.23  0.08
+## 3  0.20  0.32  0.31  0.17
+## 4  0.25  0.62  1.07  0.99
+## 5  0.30  0.57  0.90  0.82
+## 6  0.35  0.86  2.00  1.94
+## 7  0.40  0.64  1.29  1.20
+## 8  0.45  0.61  1.03  0.95
+## 9  0.50  0.56  0.55  0.50</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">saveRDS</span>( <span class="dt">file =</span> <span class="st">&#39;radii.RDS&#39;</span>, radii )</code></pre></div>
+<p><br></p>
+<h2 id="references">References</h2>
+<p>The style for this document has been adapted from <a href="http://stat545.com/bit006_github-browsability-wins.html#source-code" class="uri">http://stat545.com/bit006_github-browsability-wins.html#source-code</a> ## References</p>
+<p>Bryan, Jenny. 2017. “Happy Git and Github for the UseR.” http://happygitwithr.com.</p>
+<p>consortium, 3D-COFORM. 2013. “ARC 3D Webservice.” http://www.3d-coform.eu/index.php/tools/arc-3d-webservice.</p>
+<p>Strayer, Nick, and Lucy D’Agostino McGowan. 2016. “How to Make an Rmarkdown Website.” http://nickstrayer.me/RMarkdown_Sites_tutorial/.</p>
