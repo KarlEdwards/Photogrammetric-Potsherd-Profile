@@ -1,7 +1,7 @@
 ## Data Acquisition -- Manipulate and Measure the Model
 
 ### Process the Stereolithography File
-[Process Stereolithography](./step_1.md)
+[Process Stereolithography](./step1.md)
 
-[source](./step_1.R)
+[source](./step1.R)
 
