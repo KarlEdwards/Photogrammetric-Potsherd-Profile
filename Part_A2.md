@@ -27,20 +27,3 @@ Putting it all together, enter the following command into a terminal window:
 $\ \ $__./meshconv textured_mesh.obj -c stl -o stereolithograph__
 
 ### Manipulate and measure the model
-
-### Tools and Materials
-
-You will need:
-
-* R, with these packages installed
-    + rgl
-    + ggplot2
-    + purrr
-    + tibble
-    + lattice
-
-* The R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0) provides some handy tools for this purpose
-
-<img src="images/profile_vs_actual.png" width="50">
-
-* Here are the  [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.md) and [source](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.R)
