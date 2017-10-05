@@ -6,6 +6,10 @@
 -   [Build a usable model from a stereolithography file](#build-a-usable-model-from-a-stereolithography-file)
 -   [Align the model in the reference frame](#align-the-model-in-the-reference-frame)
 
+``` r
+base_dir <- './images/'
+```
+
 Build a usable model from a stereolithography file
 --------------------------------------------------
 
@@ -31,16 +35,10 @@ model$move_left(     offset[ 'x' ] )        # Remove the offset, effectively pus
 model$move_down(     offset[ 'y' ] )        # into the corner
 model$move_backward( offset[ 'z' ] )
 model$show( LEFT_VIEW )                     # Create the first of three figures shown below
-make_figure( 'images/initial_view' )        # and include it in this document
+make_figure( paste0( base_dir, 'initial_view' ))        # and include it in this document
 ```
 
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): RGL: Pixmap
-    ## save: unable to open file 'images/initial_view.png' for writing
-
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): 'rgl.snapshot'
-    ## failed
-
-<img src="./markdown/images/initial_view.png" width="350" >
+<img src="./images/initial_view.png" width="350" >
 
 #### Move the model away from the left wall
 
@@ -48,32 +46,20 @@ make_figure( 'images/initial_view' )        # and include it in this document
 model$move_right(   0.4 )                   # Move the model away from the X-Y plane, so
 model$move_forward( 0.4 )                   # there will be space to rotate it
 model$show( LEFT_VIEW )                     # Create the second figure
-make_figure( 'images/second_view' )                # and include it in this document
+make_figure( paste0( base_dir, 'second_view' ))                # and include it in this document
 ```
 
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): RGL: Pixmap
-    ## save: unable to open file 'images/second_view.png' for writing
-
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): 'rgl.snapshot'
-    ## failed
-
-<img src="./markdown/images/second_view.png" width="200">
+<img src="./images/second_view.png" width="200">
 
 #### Tilt the model so the rim is parallel to the X-Z plane
 
 ``` r
 model$rotate_about_x( 15 )                  # Make the rim parallel with the X-Z plane
 model$show( LEFT_VIEW )                     # Create the third figure
-make_figure( 'images/third_view' )                 # and include it in this document
+make_figure( paste0( base_dir, 'third_view' ))                 # and include it in this document
 ```
 
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): RGL: Pixmap
-    ## save: unable to open file 'images/third_view.png' for writing
-
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): 'rgl.snapshot'
-    ## failed
-
-<img src="./markdown/images/third_view.png" width="200">
+<img src="./images/third_view.png" width="200">
 
 #### Scoot the object tight against each axis again
 
@@ -83,16 +69,10 @@ model$move_left( offset[ 'x' ] )
 model$move_down( offset[ 'y' ] )
 model$move_backward( offset[ 'z' ] )
 model$show( LEFT_VIEW )
-make_figure( 'images/end_view_1' )
+make_figure( paste0( base_dir, 'end_view_1' ))
 ```
 
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): RGL: Pixmap
-    ## save: unable to open file 'images/end_view_1.png' for writing
-
-    ## Warning in rgl.snapshot(filename = paste0(caption, ".png")): 'rgl.snapshot'
-    ## failed
-
-<img src="./markdown/images/end_view_1.png" width="200">
+<img src="./images/end_view_1.png" width="200">
 
 ### Show the model from various vantage points
 
@@ -108,11 +88,11 @@ make_figure( 'end_view_2' )
                                             #
 ```
 
-<img src="./markdown/images/end_view_1.png" width="200">
-<img src="./markdown/images/front_view.png" width="200">
-<img src="./markdown/images/end_view_2.png" width="200">
+<img src="./images/end_view_1.png" width="200">
+<img src="./images/front_view.png" width="200">
+<img src="./images/end_view_2.png" width="200">
 
-<img src="./markdown/images/top_view.png" width="200">
+<img src="./images/top_view.png" width="200">
 
 ### Save the Model
 
