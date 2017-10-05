@@ -34,7 +34,7 @@ model$show( LEFT_VIEW )                     # Create the first of three figures 
 make_figure( 'initial_view' )               # and include it in this document
 ```
 
-<img src="initial_view.png" width="350" >
+<img src="../images/initial_view.png" width="350" >
 
 #### Move the model away from the left wall
 
