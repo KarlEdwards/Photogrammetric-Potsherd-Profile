@@ -25,5 +25,3 @@ image files --> textured mesh --> stereolithography
 Putting it all together, enter the following command into a terminal window:
 
 $\ \ $__./meshconv textured_mesh.obj -c stl -o stereolithograph__
-
-### Manipulate and measure the model
