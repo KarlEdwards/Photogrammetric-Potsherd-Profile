@@ -9,9 +9,9 @@ output:
 ## How archaeologists can use photogrammetry and machine learning to efficiently classify a large number of potsherds
 
 ### A. Data Acquisition
-1. [Photography](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/Part_A1.md)
-2. [Three-Dimensional Model](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/Part_A2.md)
-3. [Pre-Processing](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/Part_A3.md)
+1. [Photography](./markdown/Part_A1.md)
+2. [Three-Dimensional Model](./markdown/Part_A2.md)
+3. [Pre-Processing](./markdown/Part_A3.md)
 4. Measurement
 5. Feature Matrix **X**
 
