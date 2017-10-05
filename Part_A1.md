@@ -15,7 +15,7 @@
 * Put dark paper or cloth under and behind the turntable to serve as a backdrop
 * Adjust the height of the camera on the tripod so the center of the lense is at the same height as the center of the artifact to be photographed
 
-<img src="images/illustration_stage.JPG" width="500">
+<img src="images/illustration_stage.jpg" width="500">
 
 ### Photograph each artifact
 
