@@ -20,10 +20,10 @@ output:
           + [source](./R/step2.R)
 
     3.3 [Extract perimeter points at various heights](./markdown/step3.md)
-        3.3.1 + [source](./R/step3.R)
+        ......................... [source](./R/step3.R)
 
     3.4 [Create a wireframe model](./markdown/step4.md)
-        3.4.1 - [source](./R/step4.R)
+        ......................... [source](./R/step4.R)
 
 4.  Measurement
 5.  Feature Matrix **X**
