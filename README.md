@@ -15,19 +15,19 @@ output:
 
     3.1 [Process Stereolithography](./markdown/Part_A3_1.md)
 
-        [] [source](./R/Part_A3_1.R)
+        3.1.1 [source](./R/Part_A3_1.R)
 
     3.2 [Estimate the radius at several elevations](./markdown/step2.md)
 
-        * [source](./R/step2.R)
+        3.2.1 [source](./R/step2.R)
 
     3.3 [Extract perimeter points at various heights](./markdown/step3.md)
 
-        * [source](./R/step3.R)
+        3.3.1 [source](./R/step3.R)
 
     3.4 [Create a wireframe model](./markdown/step4.md)
 
-        * [source](./R/step4.R)
+        3.4.1 [source](./R/step4.R)
 
 4.  Measurement
 5.  Feature Matrix **X**
