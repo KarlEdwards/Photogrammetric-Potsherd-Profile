@@ -11,7 +11,7 @@ output:
 ### A. Data Acquisition
 1. [Photography](./markdown/Part_A1.md)
 2. [Three-Dimensional Model](./markdown/Part_A2.md)
-3. [Process Stereolithography](./markdown/step1.md) $\ \ \ \ $ [source](./R/step1.R)
+3. [Process Stereolithography](./markdown/step1.md)       [source](./R/step1.R)
 
 4. Measurement
 5. Feature Matrix **X**
