@@ -1,24 +1,28 @@
 
 # Computer-Assisted Potsherd Classification
 
-#### [Top](./README.md)
-
--   [Estimate the radius at several elevations](#estimate-the-radius-at-several-elevations)
+#### [Top](../README.md)
 
 ### Estimate the radius at several elevations
+
+    ## Loading required package: rgl
+
+    ## Loading required package: ggplot2
+
+    ## Loading required package: grid
+
+    ## Loading required package: gridExtra
+
+    ## Loading required package: purrr
+
+    ## Loading required package: tibble
+
+    ## Loading required package: lattice
 
 #### Retrieve Saved Model
 
 ``` r
 model <- make_model( readRDS( MODEL_FILE ) )
-```
-
-#### Use these elevations and X-coordinates
-
-``` r
-#  --- mini-configuration ---
-heights        <- seq( 0.10, 0.60, by=0.05 )
-points_along_x <- seq( 0.20, 0.80, by=0.05 )
 ```
 
 #### Get perimeter data
@@ -317,4 +321,4 @@ perimeter
 saveRDS( perimeter, PERIMETER_FILE )
 ```
 
-## Shared Footer
+#### [Top](../README.md)

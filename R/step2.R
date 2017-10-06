@@ -19,6 +19,15 @@
 
 #' ### Estimate the radius at several elevations
 
+#+ source_functions, echo = FALSE
+# Load Functions
+source( 'functions_basic.R' )
+source( 'functions_contour.R' )
+source( 'cache_viewpoint.R' )
+source( 'configuration.R' )
+source( 'cache_model.R' )
+source( 'profile_to_wireframe.R' )
+
 #' #### Retrieve Saved Model
 model <- make_model( readRDS( MODEL_FILE ) )
 
