@@ -6,11 +6,11 @@
 #' output:
 #'   github_document:
 #'     includes:
-#'       in_header: header.md
-#'       before_body: prefix.md
-#'       after_body: footer.md
+#'       in_header:   ./markdown/header.md
+#'       before_body: ./markdown/prefix.md
+#'       after_body:  ./markdown/footer.md
 #'     md_extensions: -autolink_bare_uris+hard_line_breaks
-#'     toc: TRUE
+#'     toc: FALSE
 #'     toc_depth: 2
 #'     fig_height: 7
 #'     fig_width: 5
@@ -21,12 +21,6 @@
 
 #' #### Retrieve Saved Model
 model <- make_model( readRDS( MODEL_FILE ) )
-
-
-#' #### Use these elevations and X-coordinates
-#  --- mini-configuration ---
-heights        <- seq( 0.10, 0.60, by=0.05 )
-points_along_x <- seq( 0.20, 0.80, by=0.05 )
 
 #' #### Get perimeter data
 #+ get_perimeter, echo = TRUE, result = 'hide', cache = TRUE
