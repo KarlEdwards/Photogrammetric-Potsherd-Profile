@@ -11,8 +11,9 @@ output:
 ### A. Data Acquisition
 1.  [Photography](./markdown/Part_A1.md)
 2.  [Three-Dimensional Model](./markdown/Part_A2.md)
-3.1 [Process Stereolithography](./markdown/Part_A3_1.md)
-    + [source](./R/Part_A3_1.R)
+3.  Pre-Process
+    3.1 [Process Stereolithography](./markdown/Part_A3_1.md)
+        + [source](./R/Part_A3_1.R)
 3.2 [Estimate the radius at several elevations](./markdown/step2.md)
     + [source](./R/step2.R)
 3.3 [Extract perimeter points at various heights](./markdown/step3.md)
