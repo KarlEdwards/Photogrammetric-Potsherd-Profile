@@ -1,14 +1,10 @@
 
-# Shared Header
+# Computer-Assisted Potsherd Classification
 
-#### Shared Prefix
+#### [Top](./README.md)
 
 -   [Build a usable model from a stereolithography file](#build-a-usable-model-from-a-stereolithography-file)
 -   [Align the model in the reference frame](#align-the-model-in-the-reference-frame)
-
-``` r
-base_dir <- './images/'
-```
 
 Build a usable model from a stereolithography file
 --------------------------------------------------
@@ -35,7 +31,7 @@ model$move_left(     offset[ 'x' ] )        # Remove the offset, effectively pus
 model$move_down(     offset[ 'y' ] )        # into the corner
 model$move_backward( offset[ 'z' ] )
 model$show( LEFT_VIEW )                     # Create the first of three figures shown below
-make_figure( paste0( base_dir, 'initial_view' ))        # and include it in this document
+make_figure( './images/initial_view' )        # and include it in this document
 ```
 
 <img src="./images/initial_view.png" width="350" >
@@ -46,7 +42,7 @@ make_figure( paste0( base_dir, 'initial_view' ))        # and include it in this
 model$move_right(   0.4 )                   # Move the model away from the X-Y plane, so
 model$move_forward( 0.4 )                   # there will be space to rotate it
 model$show( LEFT_VIEW )                     # Create the second figure
-make_figure( paste0( base_dir, 'second_view' ))                # and include it in this document
+make_figure( './images/second_view' )                # and include it in this document
 ```
 
 <img src="./images/second_view.png" width="200">
@@ -56,7 +52,7 @@ make_figure( paste0( base_dir, 'second_view' ))                # and include it 
 ``` r
 model$rotate_about_x( 15 )                  # Make the rim parallel with the X-Z plane
 model$show( LEFT_VIEW )                     # Create the third figure
-make_figure( paste0( base_dir, 'third_view' ))                 # and include it in this document
+make_figure( './images/third_view' )                 # and include it in this document
 ```
 
 <img src="./images/third_view.png" width="200">
@@ -69,7 +65,7 @@ model$move_left( offset[ 'x' ] )
 model$move_down( offset[ 'y' ] )
 model$move_backward( offset[ 'z' ] )
 model$show( LEFT_VIEW )
-make_figure( paste0( base_dir, 'end_view_1' ))
+make_figure( './images/end_view_1' )
 ```
 
 <img src="./images/end_view_1.png" width="200">
