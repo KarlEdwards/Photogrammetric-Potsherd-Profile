@@ -29,7 +29,7 @@ model$show( LEFT_VIEW )
 make_figure( 'band_1' )
 ```
 
-<img src="band_1.png" width="400">
+<img src="./images/band_1.png" width="400">
 
 ``` r
 # --
@@ -68,7 +68,7 @@ profile_to_wireframe( model$get(), 3 )
 make_figure( 'band_3' )
 ```
 
-<img src="band_3.png" width="400">
+<img src="./images/band_3.png" width="400">
 
 ``` r
 adjust( vp, 'theta', 15 )
@@ -76,7 +76,7 @@ adjust( vp, 'phi', 10 )
 make_figure( 'wireframe' )
 ```
 
-<img src="wireframe.png" width="400">
+<img src="./images/wireframe.png" width="400">
 
 ``` r
 adjust( vp, 'theta', 90 )
@@ -84,7 +84,7 @@ adjust( vp, 'phi', 0 )
 make_figure( 'wireframe_side' )
 ```
 
-<img src="wireframe_side.png" width="400">
+<img src="./images/wireframe_side.png" width="400">
 
 ``` r
 adjust( vp, 'theta', 90 )
@@ -92,7 +92,7 @@ adjust( vp, 'phi', 90 )
 make_figure( 'wireframe_top' )
 ```
 
-<img src="wireframe_top.png" width="400">
+<img src="./images/wireframe_top.png" width="400">
 <br>
 
 References
