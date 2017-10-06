@@ -14,19 +14,15 @@ output:
 3. Pre-Process
 
     3.1 [Process Stereolithography](./markdown/Part_A3_1.md)
-
           3.1.1 Find [source](./R/Part_A3_1.R)
 
     3.2 [Estimate the radius at several elevations](./markdown/step2.md)
-
           + [source](./R/step2.R)
 
     3.3 [Extract perimeter points at various heights](./markdown/step3.md)
-
         3.3.1 + [source](./R/step3.R)
 
     3.4 [Create a wireframe model](./markdown/step4.md)
-
         3.4.1 - [source](./R/step4.R)
 
 4.  Measurement
