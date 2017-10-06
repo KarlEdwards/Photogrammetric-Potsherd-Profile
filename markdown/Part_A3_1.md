@@ -6,20 +6,6 @@
 Build a usable model from a stereolithography file
 --------------------------------------------------
 
-    ## Loading required package: rgl
-
-    ## Loading required package: ggplot2
-
-    ## Loading required package: grid
-
-    ## Loading required package: gridExtra
-
-    ## Loading required package: purrr
-
-    ## Loading required package: tibble
-
-    ## Loading required package: lattice
-
 ### Read Stereolithography
 
 ``` r
