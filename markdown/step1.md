@@ -1,10 +1,7 @@
 
 # Computer-Assisted Potsherd Classification
 
-#### [Top](./README.md)
-
--   [Build a usable model from a stereolithography file](#build-a-usable-model-from-a-stereolithography-file)
--   [Align the model in the reference frame](#align-the-model-in-the-reference-frame)
+#### [Top](../README.md)
 
 Build a usable model from a stereolithography file
 --------------------------------------------------

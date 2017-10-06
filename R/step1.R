@@ -6,11 +6,11 @@
 #' output:
 #'   github_document:
 #'     includes:
-#'       in_header: header.md
-#'       before_body: prefix.md
-#'       after_body: footer.md
+#'       in_header:   ./markdown/header.md
+#'       before_body: ./markdown/prefix.md
+#'       after_body:  ./markdown/footer.md
 #'     md_extensions: -autolink_bare_uris+hard_line_breaks
-#'     toc: TRUE
+#'     toc: FALSE
 #'     toc_depth: 2
 #'     fig_height: 7
 #'     fig_width: 5
