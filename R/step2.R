@@ -5,10 +5,16 @@
 #' date:
 #' output:
 #'   github_document:
-#'     toc: FALSE
+#'     includes:
+#'       in_header: header.md
+#'       before_body: prefix.md
+#'       after_body: footer.md
+#'     md_extensions: -autolink_bare_uris+hard_line_breaks
+#'     toc: TRUE
+#'     toc_depth: 2
+#'     fig_height: 7
+#'     fig_width: 5
 #' bibliography: potsherd.bibtex
-#' nocite: | 
-#'   @arc3d, @bryan, @strayer, @tyers
 #' ---
 
 #' ### Estimate the radius at several elevations
