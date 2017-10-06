@@ -23,7 +23,7 @@ output:
         ......................... [source](./R/step3.R)
 
     3.4 [Create a wireframe model](./markdown/step4.md)
-        ......................... [source](./R/step4.R)
+        .................................................... [source](./R/step4.R)
 
 4.  Measurement
 5.  Feature Matrix **X**
