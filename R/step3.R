@@ -36,11 +36,13 @@ perimeter_data <- readRDS( PERIMETER_FILE )
 
 #' #### Plot perimeter data
 #+ plot_perimeter_data
-ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height )) +
-  geom_point() +
-  xlim( 0, 1 ) +
-  ylim( 0, 1 )
-ggsave( './images/perimeter_data.png' )
+png( './images/perimeter_data.png' )
+  p <- ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height )) +
+    geom_point() +
+    xlim( 0, 1 ) +
+    ylim( 0, 1 )
+  print( p )
+dev.off()
 #' <img src="./images/perimeter_data.png" width="350" >
 
 #' #### Choose two points along the perimeter of the pot at the selected height(s)

@@ -29,19 +29,17 @@ perimeter_data <- readRDS( PERIMETER_FILE )
 #### Plot perimeter data
 
 ``` r
-ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height )) +
-  geom_point() +
-  xlim( 0, 1 ) +
-  ylim( 0, 1 )
+png( './images/perimeter_data.png' )
+  p <- ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height )) +
+    geom_point() +
+    xlim( 0, 1 ) +
+    ylim( 0, 1 )
+  print( p )
+dev.off()
 ```
 
-![](step3_files/figure-markdown_github-ascii_identifiers/plot_perimeter_data-1.png)
-
-``` r
-ggsave( './images/perimeter_data.png' )
-```
-
-    ## Saving 5 x 7 in image
+    ## quartz_off_screen 
+    ##                 2
 
 <img src="./images/perimeter_data.png" width="350" >
 \#\#\#\# Choose two points along the perimeter of the pot at the selected height(s)
