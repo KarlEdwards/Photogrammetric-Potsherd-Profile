@@ -9,8 +9,8 @@ output:
 ## How archaeologists can use photogrammetry and machine learning to efficiently classify a large number of potsherds
 
 ### A. Data Acquisition
-1. [Photography](./markdown/Part_A1.md)
-2. [Three-Dimensional Model](./markdown/Part_A2.md)
+1.  [Photography](./markdown/Part_A1.md)
+2.  [Three-Dimensional Model](./markdown/Part_A2.md)
 3.1 [Process Stereolithography](./markdown/Part_A3_1.md)
     + [source](./R/Part_A3_1.R)
 3.2 [Estimate the radius at several elevations](./markdown/step2.md)
@@ -19,8 +19,8 @@ output:
     + [source](./R/step3.R)
 3.4 [Create a wireframe model](./markdown/step4.md)
     + [source](./R/step4.R)
-5. Measurement
-6. Feature Matrix **X**
+5.  Measurement
+6.  Feature Matrix **X**
 
 ### B. Unsupervised Clustering
 1. Feature Definition
