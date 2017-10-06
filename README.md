@@ -15,7 +15,7 @@ output:
 
     3.1 [Process Stereolithography](./markdown/Part_A3_1.md)
 
-        3.1.1 [source](./R/Part_A3_1.R)
+        3.1.1 Find [source](./R/Part_A3_1.R)
 
     3.2 [Estimate the radius at several elevations](./markdown/step2.md)
 
