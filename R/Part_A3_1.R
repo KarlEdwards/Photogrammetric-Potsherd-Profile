@@ -21,7 +21,7 @@
 #' ## Build a usable model from a stereolithography file
 # -----------------------------------------------
 
-#+ source_functions, echo = FALSE
+#+ source_functions, echo = FALSE, include = FALSE
 # Load Functions
 source( 'functions_basic.R' )
 source( 'functions_contour.R' )
