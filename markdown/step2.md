@@ -1,4 +1,10 @@
 
+# Computer-Assisted Potsherd Classification
+
+#### [Top](./README.md)
+
+-   [Estimate the radius at several elevations](#estimate-the-radius-at-several-elevations)
+
 ### Estimate the radius at several elevations
 
 #### Retrieve Saved Model
@@ -311,8 +317,4 @@ perimeter
 saveRDS( perimeter, PERIMETER_FILE )
 ```
 
-Bryan, Jenny. 2017. “Happy Git and Github for the UseR.” http://happygitwithr.com.
-
-consortium, 3D-COFORM. 2013. “ARC 3D Webservice.” http://www.3d-coform.eu/index.php/tools/arc-3d-webservice.
-
-Strayer, Nick, and Lucy D’Agostino McGowan. 2016. “How to Make an Rmarkdown Website.” http://nickstrayer.me/RMarkdown\_Sites\_tutorial/.
+## Shared Footer

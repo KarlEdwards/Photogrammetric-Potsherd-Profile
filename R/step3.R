@@ -1,24 +1,21 @@
 #' ---
 #' title:
 #' author:
-#' abstract: Find the center of the base, i.e., axis of rotation
+#' abstract: Extract perimeter points at various heights
 #' date:
 #' output:
 #'   github_document:
-#'     toc: FALSE
+#'     includes:
+#'       in_header: header.md
+#'       before_body: prefix.md
+#'       after_body: footer.md
+#'     md_extensions: -autolink_bare_uris+hard_line_breaks
+#'     toc: TRUE
+#'     toc_depth: 2
+#'     fig_height: 7
+#'     fig_width: 5
 #' bibliography: potsherd.bibtex
-#' nocite: | 
-#'   @arc3d, @bryan, @strayer, @tyers
 #' ---
-
-#+ source_functions, echo = FALSE
-# Load Functions
-source( 'functions_basic.R' )
-source( 'functions_contour.R' )
-source( 'cache_viewpoint.R' )
-source( 'configuration.R' )
-source( 'cache_model.R' )
-source( 'profile_to_wireframe.R' )
 
 # -----------------------------------------------
 #' ## Find the center of the base, i.e., axis of rotation

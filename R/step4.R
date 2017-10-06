@@ -1,26 +1,24 @@
 #' ---
 #' title:
 #' author:
-#' abstract: Find the center of the base, i.e., axis of rotation
+#' abstract: Make a wireframe model
 #' date:
 #' output:
 #'   github_document:
-#'     toc: FALSE
+#'     includes:
+#'       in_header: header.md
+#'       before_body: prefix.md
+#'       after_body: footer.md
+#'     md_extensions: -autolink_bare_uris+hard_line_breaks
+#'     toc: TRUE
+#'     toc_depth: 2
+#'     fig_height: 7
+#'     fig_width: 5
 #' bibliography: potsherd.bibtex
-#' nocite: | 
-#'   @arc3d, @bryan, @strayer, @tyers
 #' ---
 
-#' #### Load functions
-#+ source_functions, echo = FALSE
-source( 'functions_basic.R' )
-source( 'functions_contour.R' )
-source( 'cache_viewpoint.R' )
-source( 'configuration.R' )
-source( 'cache_model.R' )
-source( 'profile_to_wireframe.R' )
 
-#' #### Get data
+#' #### Get data from previous step
 #+ get_radii, echo = TRUE
 radii   <- readRDS( file = 'radii.RDS' )
 medians <- radii %>% map_dbl( ~median( . ))

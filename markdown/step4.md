@@ -1,7 +1,15 @@
 
-#### Load functions
+# Computer-Assisted Potsherd Classification
 
-#### Get data
+#### [Top](./README.md)
+
+-   [Get data from previous step](#get-data-from-previous-step)
+-   [Square the model in the reference frame](#square-the-model-in-the-reference-frame)
+-   [Flip profile](#flip-profile)
+-   [Make figures](#make-figures)
+-   [References](#references)
+
+#### Get data from previous step
 
 ``` r
 radii   <- readRDS( file = 'radii.RDS' )
@@ -24,7 +32,7 @@ make_figure( 'band_1' )
 <img src="band_1.png" width="400">
 
 ``` r
-# 
+# --
 ```
 
 #### Square the model in the reference frame
@@ -84,15 +92,13 @@ adjust( vp, 'phi', 90 )
 make_figure( 'wireframe_top' )
 ```
 
-<img src="wireframe_top.png" width="400"> <br>
+<img src="wireframe_top.png" width="400">
+<br>
 
 References
 ----------
 
-The style for this document has been adapted from <http://stat545.com/bit006_github-browsability-wins.html#source-code> \#\# References
+The style for this document has been adapted from http://stat545.com/bit006\_github-browsability-wins.html\#source-code
+\#\# References
 
-Bryan, Jenny. 2017. “Happy Git and Github for the UseR.” http://happygitwithr.com.
-
-consortium, 3D-COFORM. 2013. “ARC 3D Webservice.” http://www.3d-coform.eu/index.php/tools/arc-3d-webservice.
-
-Strayer, Nick, and Lucy D’Agostino McGowan. 2016. “How to Make an Rmarkdown Website.” http://nickstrayer.me/RMarkdown\_Sites\_tutorial/.
+## Shared Footer
