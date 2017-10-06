@@ -1,6 +1,24 @@
 
+# Computer-Assisted Potsherd Classification
+
+#### [Top](../README.md)
+
 Find the center of the base, i.e., axis of rotation
 ---------------------------------------------------
+
+    ## Loading required package: rgl
+
+    ## Loading required package: ggplot2
+
+    ## Loading required package: grid
+
+    ## Loading required package: gridExtra
+
+    ## Loading required package: purrr
+
+    ## Loading required package: tibble
+
+    ## Loading required package: lattice
 
 #### Retrieve Saved Perimeter Data
 
@@ -19,7 +37,14 @@ ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height ))
 
 ![](step3_files/figure-markdown_github-ascii_identifiers/plot_perimeter_data-1.png)
 
-#### Choose two points along the perimeter of the pot at the selected height(s)
+``` r
+ggsave( './images/perimeter_data.png' )
+```
+
+    ## Saving 5 x 7 in image
+
+<img src="./images/perimeter_data.png" width="350" >
+\#\#\#\# Choose two points along the perimeter of the pot at the selected height(s)
 
 ``` r
 # Choose a height, from which to estimate the axis of rotation
@@ -40,10 +65,10 @@ find_center <- function( p, h ){
     slopes <- delta_y / delta_x
     slopes
     N <- length( slopes )
-    ray1 <- get_perpendicular2D( m = slopes[ 1 ], P = perimeter_points[ 2, ] )
-    ray2 <- get_perpendicular2D( m = slopes[ N ], P = perimeter_points[ N-1, ] )
+    ray1 <- get_perpendicular2D( m = slopes[ 1 ], P = perimeter[ 2, ] )
+    ray2 <- get_perpendicular2D( m = slopes[ N ], P = perimeter[ N-1, ] )
     est_ctr <- get_intersection2D( ray1, ray2 )
-    est_radius <- euclidean_distance( est_ctr, perimeter_points[ 2, ] )
+    est_radius <- euclidean_distance( est_ctr, perimeter[ 2, ] )
     result <- data.frame(
       h = h, ctrX = est_ctr$x, ctrY = est_ctr$y, r = est_radius
     )
@@ -62,29 +87,18 @@ radii
     ## # A tibble: 9 x 4
     ##       h  ctrX  ctrY     r
     ##   <dbl> <dbl> <dbl> <dbl>
-    ## 1  0.10  0.44  0.68  0.56
-    ## 2  0.15  0.28  0.23  0.08
-    ## 3  0.20  0.32  0.31  0.17
+    ## 1  0.10  0.49  0.67  0.56
+    ## 2  0.15  0.33  0.21  0.09
+    ## 3  0.20  0.32  0.32  0.17
     ## 4  0.25  0.62  1.07  0.99
-    ## 5  0.30  0.57  0.90  0.82
-    ## 6  0.35  0.86  2.00  1.94
-    ## 7  0.40  0.64  1.29  1.20
-    ## 8  0.45  0.61  1.03  0.95
-    ## 9  0.50  0.56  0.55  0.50
+    ## 5  0.30  0.57  0.92  0.82
+    ## 6  0.35  0.86  2.01  1.94
+    ## 7  0.40  0.64  1.23  1.21
+    ## 8  0.45  0.62  0.95  0.95
+    ## 9  0.50  0.56  0.49  0.51
 
 ``` r
 saveRDS( file = 'radii.RDS', radii )
 ```
 
-<br>
-
-References
-----------
-
-The style for this document has been adapted from <http://stat545.com/bit006_github-browsability-wins.html#source-code> \#\# References
-
-Bryan, Jenny. 2017. “Happy Git and Github for the UseR.” http://happygitwithr.com.
-
-consortium, 3D-COFORM. 2013. “ARC 3D Webservice.” http://www.3d-coform.eu/index.php/tools/arc-3d-webservice.
-
-Strayer, Nick, and Lucy D’Agostino McGowan. 2016. “How to Make an Rmarkdown Website.” http://nickstrayer.me/RMarkdown\_Sites\_tutorial/.
+## Shared Footer
