@@ -29,7 +29,9 @@ source( 'cache_model.R' )
 source( 'profile_to_wireframe.R' )
 
 #' #### Retrieve Saved Model
+#+ retrieve_model
 model <- make_model( readRDS( MODEL_FILE ) )
+
 
 #' #### Get perimeter data
 #+ get_perimeter, echo = TRUE, include = FALSE, result = 'hide'
@@ -57,11 +59,13 @@ perimeter_matrix <- matrix(
   , dimnames = list( NULL, c( 'height', 'perimeter_x', 'perimeter_y' ))
 )
 
+
 #' #### Remove invalid points
 #+ remove_bad_points, echo = TRUE
 valid_points <- is.finite( perimeter_matrix[ , 'perimeter_y' ] )
 perimeter <- data.frame( perimeter_matrix[ valid_points, ] )
 perimeter
+
 
 #' #### Save the results
 #+ save_perimeter, echo = TRUE
