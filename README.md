@@ -7,6 +7,8 @@ Computer-Assisted Potsherd Classification
     -   [C. Semi-Supervised Feature Selection](#c.-semi-supervised-feature-selection)
     -   [D. Supervised Provisional Classification](#d.-supervised-provisional-classification)
 
+------------------------------------------------------------------------
+
 ### Four Easy Steps:
 
 #### A. Data Acquisition
