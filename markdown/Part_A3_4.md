@@ -18,7 +18,7 @@ best_x
     ## [1] 0.275
 
 ``` r
-model$get_band( ax = X_AXIS, ctr = best_x, thickness = 2.0 * STRIPE_WIDTH )
+model$get_band( ax = X_AXIS, ctr = best_x, thickness = 1.8 * STRIPE_WIDTH )
 model$show( LEFT_VIEW )
 make_figure( './images/band_1' )
 ```
