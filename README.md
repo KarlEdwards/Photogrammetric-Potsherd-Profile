@@ -1,47 +1,55 @@
-Computer-Assisted Potsherd Classification
-================
+# Photogrammetric Potsherd Profile
+A procedure for using photography to estimate key artifact dimensions
 
--   [Four Easy Steps:](#four-easy-steps)
-    -   [A. Data Acquisition](#a.-data-acquisition)
-    -   [B. Unsupervised Clustering](#b.-unsupervised-clustering)
-    -   [C. Semi-Supervised Feature Selection](#c.-semi-supervised-feature-selection)
-    -   [D. Supervised Provisional Classification](#d.-supervised-provisional-classification)
+## Tools and Materials
+* An artifact to measure
+* Photography
+  * Location with plenty of natural light. See [photography guidelines](https://homes.esat.kuleuven.be/~visit3d/webservice/v2/manual3.php#SEC2)
+  * Work table
+  * Camera
+  * Tripod
+  * Turntable
+  * Dark background
+* ARC3D Account
+  * If you are not already an ARC3D user, apply for a free account [here](https://homes.esat.kuleuven.be/~visit3d/webservice/v2/request_login.php)
+* Utility: [meshconv](http://www.patrickmin.com/meshconv/)
+* R, with these packages
+  * rgl
+  * ggplot2
+  * purrr
+  * tibble
+  * lattice
 
-------------------------------------------------------------------------
+## Procedure
+### Set the Stage
+* Put dark paper or cloth under and behind the turntable to serve as a backdrop
+* Adjust the height of the camera on the tripod so the center of the lense is at the same height as the center of the artifact to be photographed
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_stage.JPG" width="500">
 
-### Four Easy Steps:
+### Place the artifact on the turntable and take photographs at roughly 10-degree intervals
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/illustration_every_ten_degrees.png" width="500">
 
-#### A. Data Acquisition
+### Convert the image files to a textured mesh
+* Upload images to ARC3D web service
+* Pour yourself a cup of coffee
+* In a few minutes to a few hours, if all goes well, ARC3D will send you a textured mesh object
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/model.png" width="150">
 
-1.  [Photography](./markdown/Part_A1.md)
-2.  [Three-Dimensional Model](./markdown/Part_A2.md)
-3.  Pre-Process
+### Convert the textured mesh to a stereolithography model
+* The conversion utility
+  * meshconv
+* The input file (obtained from ARC3D)
+  * textured_mesh.obj 
+* Desired output format
+  * -c stl
+* Output file
+  * -o stereolithograph[.stl]
+#### Putting it all together into a command:
+./meshconv textured_mesh.obj -c stl -o stereolithograph
 
-    3.1 [Process Stereolithography](./markdown/Part_A3_1.md) ................................................... [source](./R/Part_A3_1.R)
+### Manipulate and measure the model
+* The R package, [rgl](https://www.rdocumentation.org/packages/rgl/versions/0.97.0) provides some handy tools for this purpose
+<img src="https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/profile_vs_actual.png" width="50">
 
-    3.2 [Estimate the radius at several elevations](./markdown/Part_A3_2.md) ............................. [source](./R/Part_A3_2.R)
 
-    3.3 [Extract perimeter points at various heights](./markdown/Part_A3_3.md) ......................... [source](./R/Part_A3_3.R)
-
-    3.4 [Create a wireframe model](./markdown/Part_A3_4.md) .................................................... [source](./R/Part_A3_4.R)
-
-4.  Measurement
-5.  Feature Matrix **X**
-
-#### B. Unsupervised Clustering
-
-1.  Feature Definition
-2.  Feature Similarity
-3.  Pairwise Object Similarity
-
-#### C. Semi-Supervised Feature Selection
-
-1.  Feature Weight Computation
-2.  Provisional Prototypes
-3.  Dimensionality Reduction
-
-#### D. Supervised Provisional Classification
-
-1.  CART
-2.  ID3
-3.  C4.5
+* Here are the  [details](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.md) and [source](https://github.com/KarlEdwards/Photogrammetric-Potsherd-Profile/blob/master/demonstration.R)
