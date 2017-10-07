@@ -25,10 +25,6 @@ make_figure( 'band_1' )
 
 <img src="./images/band_1.png" width="400">
 
-``` r
-# --
-```
-
 #### Square the model in the reference frame
 
 ``` r

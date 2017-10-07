@@ -40,7 +40,8 @@ model$get_band( ax=X_AXIS, ctr=best_x, thickness=STRIPE_WIDTH )
 model$show( LEFT_VIEW )
 make_figure( 'band_1' )
 #' <img src="./images/band_1.png" width="400">
-# --
+# -----------------------------------------------
+
 
 #' #### Square the model in the reference frame
 #+ square_in_frame
