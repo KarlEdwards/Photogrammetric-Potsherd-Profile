@@ -1,13 +1,10 @@
 ---
 title: "Computer-Assisted Potsherd Classification"
-author: Karl Edwards
 output:
-  github_document:
+  html_document:
    toc: true
-   toc_depth: 2
    highlight: tango
    css: styles.css
-bibliography: potsherd.bibtex
 ---
 
 ## How archaeologists can use photogrammetry and machine learning to efficiently classify a large number of potsherds
