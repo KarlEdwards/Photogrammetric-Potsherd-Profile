@@ -44,6 +44,7 @@ png( './images/perimeter_data.png' )
   print( p )
 dev.off()
 #' <img src="./images/perimeter_data.png" width="350" >
+# -----------------------------------------------
 
 
 #' #### Estimate the center
@@ -56,12 +57,13 @@ find_center <- function( p, h ){
 
   # Extract perimeter points at height, h
   perimeter <- p[ p[ , 'height' ] == h, c( 'perimeter_x', 'perimeter_y' ) ]
-  
-    # If not enough points, return the height only,
-    # setting all other items to NA
-    result <- data.frame(
-      h = h, ctrX = NA, ctrY = NA, r = NA
-    )
+ 
+  # Default results: 
+  # If not enough points, return the height only,
+  # setting all other items to NA
+  result <- data.frame(
+    h = h, ctrX = NA, ctrY = NA, r = NA, N = NA
+  )
 
   # If an insufficient number of perimeter points exist at height, h, return result unknown,
   # otherwise, find the center and radius
@@ -83,11 +85,9 @@ find_center <- function( p, h ){
 
     # Prepare to return the results
     result <- data.frame(
-      h = h, ctrX = est_ctr$x, ctrY = est_ctr$y, r = est_radius
+      h = h, ctrX = est_ctr$x, ctrY = est_ctr$y, r = est_radius, N = N
     )
-  } # else {
-#
-#  }
+  }
     }
 
   # Round the results

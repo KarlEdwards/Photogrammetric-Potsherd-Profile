@@ -15,7 +15,8 @@ perimeter_data <- readRDS( PERIMETER_FILE )
 #### Plot perimeter data
 
 <img src="./images/perimeter_data.png" width="350" >
-\#\#\#\# Estimate the center
+
+#### Estimate the center
 
 ``` r
 # Estimate the center for a given height
@@ -29,12 +30,13 @@ find_center <- function( p, h ){
 
   # Extract perimeter points at height, h
   perimeter <- p[ p[ , 'height' ] == h, c( 'perimeter_x', 'perimeter_y' ) ]
-  
-    # If not enough points, return the height only,
-    # setting all other items to NA
-    result <- data.frame(
-      h = h, ctrX = NA, ctrY = NA, r = NA
-    )
+ 
+  # Default results: 
+  # If not enough points, return the height only,
+  # setting all other items to NA
+  result <- data.frame(
+    h = h, ctrX = NA, ctrY = NA, r = NA, N = NA
+  )
 
   # If an insufficient number of perimeter points exist at height, h, return result unknown,
   # otherwise, find the center and radius
@@ -56,11 +58,9 @@ find_center <- function( p, h ){
 
     # Prepare to return the results
     result <- data.frame(
-      h = h, ctrX = est_ctr$x, ctrY = est_ctr$y, r = est_radius
+      h = h, ctrX = est_ctr$x, ctrY = est_ctr$y, r = est_radius, N = N
     )
-  } # else {
-#
-#  }
+  }
     }
 
   # Round the results
@@ -71,18 +71,18 @@ WIREFRAME_HEIGHTS %>% map_df( ~find_center( perimeter_data, . )) -> radii
 radii
 ```
 
-    ## # A tibble: 9 x 4
-    ##       h  ctrX  ctrY     r
-    ##   <dbl> <dbl> <dbl> <dbl>
-    ## 1  0.10  0.49  0.67  0.57
-    ## 2  0.15  0.33  0.21  0.30
-    ## 3  0.20  0.32  0.32  0.44
-    ## 4  0.25  0.62  1.07  1.00
-    ## 5  0.30  0.57  0.92  0.85
-    ## 6  0.35  0.86  2.01  1.93
-    ## 7  0.40  0.64  1.23  1.22
-    ## 8  0.45  0.62  0.95  0.96
-    ## 9  0.50  0.56  0.49  0.51
+    ## # A tibble: 9 x 5
+    ##       h  ctrX  ctrY     r     N
+    ##   <dbl> <dbl> <dbl> <dbl> <dbl>
+    ## 1  0.10  0.49  0.67  0.57     6
+    ## 2  0.15  0.33  0.21  0.30     8
+    ## 3  0.20  0.32  0.32  0.44    11
+    ## 4  0.25  0.62  1.07  1.00    12
+    ## 5  0.30  0.57  0.92  0.85    12
+    ## 6  0.35  0.86  2.01  1.93    12
+    ## 7  0.40  0.64  1.23  1.22    12
+    ## 8  0.45  0.62  0.95  0.96    12
+    ## 9  0.50  0.56  0.49  0.51    12
 
 ``` r
 saveRDS( file = 'radii.RDS', radii )
