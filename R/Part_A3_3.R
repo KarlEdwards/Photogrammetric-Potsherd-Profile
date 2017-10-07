@@ -43,7 +43,7 @@ png( './images/perimeter_data.png' )
     ylim( 0, 1 )
   print( p )
 dev.off()
-#' <img src="./images/perimeter_data.png" width="350" >
+#' <img src="./images/perimeter_data.png" height="350" width="350" >
 # -----------------------------------------------
 
 
