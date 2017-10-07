@@ -93,6 +93,5 @@ References
 ----------
 
 The style for this document has been adapted from http://stat545.com/bit006\_github-browsability-wins.html\#source-code
-\#\# References
 
 #### [Top](../README.md)

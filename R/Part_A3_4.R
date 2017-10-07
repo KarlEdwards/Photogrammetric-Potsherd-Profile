@@ -92,6 +92,3 @@ make_figure( 'wireframe_top' )
 
 #' ## References
 #' The style for this document has been adapted from http://stat545.com/bit006_github-browsability-wins.html#source-code
-
-
-#' ## References
