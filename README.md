@@ -3,11 +3,9 @@ Computer-Assisted Potsherd Classification
 Karl Edwards
 
 -   [A. Data Acquisition](#a.-data-acquisition)
--   [4. Measurement](#measurement)
--   [5. Feature Matrix **X**](#feature-matrix-x)
-    -   [B. Unsupervised Clustering](#b.-unsupervised-clustering)
-    -   [C. Semi-Supervised Feature Selection](#c.-semi-supervised-feature-selection)
-    -   [D. Supervised Provisional Classification](#d.-supervised-provisional-classification)
+-   [B. Unsupervised Clustering](#b.-unsupervised-clustering)
+-   [C. Semi-Supervised Feature Selection](#c.-semi-supervised-feature-selection)
+-   [D. Supervised Provisional Classification](#d.-supervised-provisional-classification)
 
 #### A. Data Acquisition
 
@@ -23,11 +21,8 @@ Karl Edwards
 
     3.4 [Create a wireframe model](./markdown/Part_A3_4.md) .................................................... [source](./R/Part_A3_4.R)
 
-4. Measurement
---------------
-
-5. Feature Matrix **X**
------------------------
+4.  Measurement
+5.  Feature Matrix **X**
 
 #### B. Unsupervised Clustering
 
