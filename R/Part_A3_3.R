@@ -50,8 +50,8 @@ ggsave(
   geom_point() +
   xlim( 0, 1 ) +
   ylim( 0, 1 )
-  , width = 1.25
-  , height = 1.25
+  , width = 3.25
+  , height = 3.25
   , dpi = 1200
 )
 #' <img src="./images/perimeter_data.png" >
