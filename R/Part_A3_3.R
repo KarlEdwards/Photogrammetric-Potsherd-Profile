@@ -21,7 +21,7 @@
 #' ## Find the center of the base, i.e., axis of rotation
 # -----------------------------------------------
 
-#+ source_functions, echo = FALSE
+#+ source_functions, echo = FALSE, include = FALSE
 # Load Functions
 source( 'functions_basic.R' )
 #source( 'functions_contour.R' )
@@ -50,7 +50,7 @@ dev.off()
 
 #+ choose_height
 # Choose a height, from which to estimate the axis of rotation
-selected_height_index <- 4 # length( heights )
+selected_height_index <- 4 # length( WIREFRAME_HEIGHTS )
 
 find_center <- function( p, h ){
 
@@ -82,7 +82,7 @@ find_center <- function( p, h ){
   lapply( result[ complete.cases( result ), ], round, 2 )
 }
 
-heights %>% map_df( ~find_center( perimeter_data, . )) -> radii
+WIREFRAME_HEIGHTS %>% map_df( ~find_center( perimeter_data, . )) -> radii
 radii
 
 saveRDS( file = 'radii.RDS', radii )

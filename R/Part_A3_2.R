@@ -19,7 +19,7 @@
 
 #' ### Estimate the radius at several elevations
 
-#+ source_functions, echo = FALSE
+#+ source_functions, echo = FALSE, include = FALSE
 # Load Functions
 source( 'functions_basic.R' )
 source( 'functions_contour.R' )
@@ -32,12 +32,12 @@ source( 'profile_to_wireframe.R' )
 model <- make_model( readRDS( MODEL_FILE ) )
 
 #' #### Get perimeter data
-#+ get_perimeter, echo = TRUE, result = 'hide', cache = TRUE
+#+ get_perimeter, echo = TRUE, include = FALSE, result = 'hide'
 map(
-    heights                                 # for each height, h
+    WIREFRAME_HEIGHTS                       # for each height, h
   , ~map2(
          .x 
-       , points_along_x                     # for each point along the perimeter, x
+       , POINTS_ALONG_X                     # for each point along the perimeter, x
        , ~get_minz_at_hx(                   # return minimum( z ) as partial radius at ( h, x )
             model
           , h=.x
@@ -46,6 +46,7 @@ map(
          )
      )
 ) %>% unlist() -> perimeter_data
+
 
 #' #### Clean the data
 #+ clean_data, echo = TRUE, include = TRUE
