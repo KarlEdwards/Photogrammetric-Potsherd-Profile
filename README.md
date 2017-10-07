@@ -1,3 +1,5 @@
+* auto-gen TOC:
+{:toc}
 ---
 title: "Computer-Assisted Potsherd Classification"
 output:
