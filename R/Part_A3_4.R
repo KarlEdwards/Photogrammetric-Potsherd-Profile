@@ -38,7 +38,7 @@ best_x  <- best_slice( model$get(), X_AXIS )
 best_x
 model$get_band( ax = X_AXIS, ctr = best_x, thickness = 2.0 * STRIPE_WIDTH )
 model$show( LEFT_VIEW )
-make_figure( 'band_1' )
+make_figure( './images/band_1' )
 #' <img src="./images/band_1.png" width="400">
 # -----------------------------------------------
 
@@ -68,19 +68,19 @@ profile_to_wireframe( model$get(), 3 )
 
 #' #### Make figures
 #+ make_figures
-make_figure( 'band_3' )
+make_figure( './images/band_3' )
 #' <img src="./images/band_3.png" width="400">
 adjust( vp, 'theta', 15 )
 adjust( vp, 'phi', 10 )
-make_figure( 'wireframe' )
+make_figure( './images/wireframe' )
 #' <img src="./images/wireframe.png" width="400">
 adjust( vp, 'theta', 90 )
 adjust( vp, 'phi', 0 )
-make_figure( 'wireframe_side' )
+make_figure( './images/wireframe_side' )
 #' <img src="./images/wireframe_side.png" width="400">
 adjust( vp, 'theta', 90 )
 adjust( vp, 'phi', 90 )
-make_figure( 'wireframe_top' )
+make_figure( './images/wireframe_top' )
 #' <img src="./images/wireframe_top.png" width="400">
 #'<br>
 
