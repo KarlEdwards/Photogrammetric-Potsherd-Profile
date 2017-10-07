@@ -2,7 +2,7 @@
 title: "Computer-Assisted Potsherd Classification"
 author: Karl Edwards
 output:
-  github_document
+  github_document:
    toc: true
    toc_depth: 2
    highlight: tango
