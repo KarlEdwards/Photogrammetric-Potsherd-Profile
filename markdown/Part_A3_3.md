@@ -14,7 +14,7 @@ perimeter_data <- readRDS( PERIMETER_FILE )
 
 #### Plot perimeter data
 
-<img src="./images/perimeter_data.png" height="350" width="450" >
+<img src="./images/perimeter_data.png" height="350" width="350" >
 
 #### Estimate the center
 

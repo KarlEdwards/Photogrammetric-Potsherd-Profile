@@ -36,14 +36,14 @@ perimeter_data <- readRDS( PERIMETER_FILE )
 
 #' #### Plot perimeter data
 #+ plot_perimeter_data, echo = TRUE, include = FALSE
-png( './images/perimeter_data.png' )
+png( './images/perimeter_data.png', width = 3.25, height = 3.25 )
   p <- ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height )) +
     geom_point() +
     xlim( 0, 1 ) +
     ylim( 0, 1 )
   print( p )
 dev.off()
-#' <img src="./images/perimeter_data.png" height="350" width="450" >
+#' <img src="./images/perimeter_data.png" height="350" width="350" >
 # -----------------------------------------------
 
 
