@@ -36,7 +36,7 @@ model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 best_x  <- best_slice( model$get(), X_AXIS )
 best_x
-model$get_band( ax=X_AXIS, ctr=best_x, thickness=STRIPE_WIDTH )
+model$get_band( ax = X_AXIS, ctr = best_x, thickness = 1.5 * STRIPE_WIDTH )
 model$show( LEFT_VIEW )
 make_figure( 'band_1' )
 #' <img src="./images/band_1.png" width="400">
