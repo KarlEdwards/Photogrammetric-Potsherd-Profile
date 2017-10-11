@@ -31,22 +31,23 @@ histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
 best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]
 thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
 
-ggplot( thin_slice, aes( x = z, y = y )) +
-  geom_point()   +
-  xlim( 0, 0.6 ) +
-  ylim( 0, 0.6 )
-```
+#ggplot( thin_slice, aes( x = z, y = y )) +
+#  geom_point()   +
+#  xlim( 0, 0.6 ) +
+#  ylim( 0, 0.6 )
 
-![](Part_A3_4_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-1.png)
-
-``` r
 df <- thin_slice[ ,c( 'y', 'z' ) ]
 df <- unique( df[ order( df[ , 'y' ] ), ] )
 df <- df[ df[ ,'y' ] > 0.1 & df[ , 'y' ] < 0.6, ]
+png( './images/sliver.png' )
 plot( df )
+dev.off()
 ```
 
-![](Part_A3_4_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-1-2.png)
+    ## quartz_off_screen 
+    ##                 2
+
+<img src="./images/sliver.png" width="400">
 
 ``` r
 extrema <- critical_points( df, 0.001 )
