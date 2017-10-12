@@ -39,10 +39,12 @@ vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 #' Recall that the front view looks like this:
 #' 
 #' <img src="./images/front_view.png" width="300">
+# -----------------------------------------------
 
 
 best_x  <- best_slice( model$get(), X_AXIS )
 #' The tallest cross-section is at X = ```r round( best_x, 1 )```
+# -----------------------------------------------
 
 
 #' #### Slice the model at this point

@@ -24,7 +24,8 @@ best_x  <- best_slice( model$get(), X_AXIS )
 ```
 
 The tallest cross-section is at X = `0.3`
-\#\#\#\# Slice the model at this point
+
+#### Slice the model at this point
 
 <img src="./images/thick_band.png" width="400">
 
