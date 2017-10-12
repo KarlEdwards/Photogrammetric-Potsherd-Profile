@@ -43,7 +43,7 @@ best_x  <- best_slice( model$get(), X_AXIS )
 #+ show_thick, echo = TRUE, include = FALSE
 model$get_band( ax = X_AXIS, ctr = best_x, thickness =  1.8 * STRIPE_WIDTH )
 model$show( LEFT_VIEW )
-make_figure( 'thick_band' )
+make_figure( './images/thick_band' )
 #' <img src="./images/thick_band.png" width="400">
 # -----------------------------------------------
 
