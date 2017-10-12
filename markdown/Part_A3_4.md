@@ -3,7 +3,7 @@
 
 #### [Top](../README.md)
 
-#### Get data from previous step
+### Get data from previous step
 
 ``` r
 radii   <- readRDS( file = 'radii.RDS' )
@@ -13,7 +13,7 @@ model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 ```
 
-#### Find the tallest cross-section
+### Find the tallest cross-section
 
 Recall that the front view looks like this:
 
@@ -25,7 +25,7 @@ best_x  <- best_slice( model$get(), X_AXIS )
 
 The tallest cross-section is at X = `0.3`
 
-#### Slice the model at this point
+### Slice the model at this point
 
 <img src="./images/thick_band.png" width="400">
 
@@ -42,6 +42,8 @@ thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
 ```
 
 <img src="./images/thin_band.png" width="400">
+
+### How far apart are the ridges?
 
 ``` r
 # Establish plot limits
@@ -75,6 +77,8 @@ breaks_x <- breaks_x[ 1 ]
 ```
 
 <img src="./images/sliver.png" width="400">
+
+### Rotate the idealized profile to envision the whole pot
 
 #### Square the model in the reference frame
 

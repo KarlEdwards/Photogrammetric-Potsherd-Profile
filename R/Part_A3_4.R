@@ -27,7 +27,7 @@ source( 'cache_model.R' )
 source( 'profile_to_wireframe.R' )
 source( 'critical_points.R' )
 
-#' #### Get data from previous step
+#' ### Get data from previous step
 #+ get_radii, echo = TRUE
 radii   <- readRDS( file = 'radii.RDS' )
 medians <- radii %>% map_dbl( ~median( . ))
@@ -35,7 +35,7 @@ center  <- medians[ 2:3 ]
 model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 
-#' #### Find the tallest cross-section
+#' ### Find the tallest cross-section
 #' Recall that the front view looks like this:
 #' 
 #' <img src="./images/front_view.png" width="300">
@@ -47,7 +47,7 @@ best_x  <- best_slice( model$get(), X_AXIS )
 # -----------------------------------------------
 
 
-#' #### Slice the model at this point
+#' ### Slice the model at this point
 #+ show_thick, echo = TRUE, include = FALSE
 model$get_band( ax = X_AXIS, ctr = best_x, thickness =  1.8 * STRIPE_WIDTH )
 model$show( LEFT_VIEW )
@@ -77,6 +77,7 @@ thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
 # -----------------------------------------------
 
 
+#' ### How far apart are the ridges?
 # Establish plot limits
 plot_limit_lo <- round( min( thin_slice[ , 'y' ] ), 3 )
 plot_limit_hi <- round( max( thin_slice[ , 'y' ] ), 3 )
@@ -142,6 +143,7 @@ dev.off()
 # -----------------------------------------------
 
 
+#' ### Rotate the idealized profile to envision the whole pot
 #' #### Square the model in the reference frame
 #+ square_in_frame
 offset <- apply( model$get(), 2, min )      # Find the distance from each axis to the nearest model point
