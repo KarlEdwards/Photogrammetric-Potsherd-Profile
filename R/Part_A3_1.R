@@ -82,13 +82,13 @@ make_figure( './images/end_view_1' )
 
 #' ### Show the model from various vantage points
 model$show( FRONT_VIEW )
-make_figure( 'front_view' )
+make_figure( './images/front_view' )
                                             #
 model$show( TOP_VIEW_C )
-make_figure( 'top_view' )
+make_figure( './images/top_view' )
                                             #
 model$show( RIGHT_VIEW )
-make_figure( 'end_view_2' )
+make_figure( './images/end_view_2' )
                                             #
 #' <img src="./images/end_view_1.png" width="200">
 #' <img src="./images/front_view.png" width="200">
