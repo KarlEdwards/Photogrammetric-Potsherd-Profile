@@ -16,7 +16,7 @@ vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 best_x  <- best_slice( model$get(), X_AXIS )
 ```
 
-The tallest cross-section is at X = `best_x`
+The tallest cross-section is at X = `0.275`
 
 ``` r
 # Slice the model at this point

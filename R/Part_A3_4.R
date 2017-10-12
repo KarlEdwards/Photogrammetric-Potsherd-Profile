@@ -38,7 +38,7 @@ vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 # Find the tallest cross-section
 best_x  <- best_slice( model$get(), X_AXIS )
 
-#' The tallest cross-section is at X = ```best_x```
+#' The tallest cross-section is at X = ```r best_x```
 
 # Slice the model at this point
 model$get_band( ax = X_AXIS, ctr = best_x, thickness =  1.8 * STRIPE_WIDTH )
