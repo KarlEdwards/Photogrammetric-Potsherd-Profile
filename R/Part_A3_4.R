@@ -53,14 +53,14 @@ histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
 best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]
 thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
 # Show the resulting profile
-# ---- Begin Plotting ----
+# _____ Begin Plotting _____
   png( './images/band_1.png' )
     ggplot( thin_slice, aes( x = z, y = y )) +
       geom_point()   +
       xlim( 0, 0.6 ) +
       ylim( 0, 0.6 )
   dev.off()
-# ---- End Plotting ----
+# _____ End Plotting _____
 #' <img src="./images/band_1.png" width="400">
 # -----------------------------------------------
 
@@ -76,7 +76,7 @@ extrema <- critical_points( df, 0.001 )
 ###extrema <- extrema[ extrema[ , 'direction' ] %in% c( 'ridge', 'groove' ), ]
 extrema <- extrema[ extrema[ , 'direction' ] %in% 'ridge', ]
 
-# ---- Begin Plotting ----
+# _____ Begin Plotting _____
 png( './images/sliver.png' )
 p <- ggplot( df, aes( x = z, y = y )) +
   geom_point() +
@@ -126,7 +126,7 @@ p + u + v +
   )
 
 dev.off()
-# ---- End Plotting ----
+# _____ End Plotting _____
 #' <img src="./images/sliver.png" width="400">
 # -----------------------------------------------
 

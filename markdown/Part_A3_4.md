@@ -11,6 +11,8 @@ medians <- radii %>% map_dbl( ~median( . ))
 center  <- medians[ 2:3 ]
 model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
+
+# Find the tallest cross-section
 best_x  <- best_slice( model$get(), X_AXIS )
 best_x
 ```
@@ -18,24 +20,39 @@ best_x
     ## [1] 0.275
 
 ``` r
+# Slice the model at this point
 model$get_band( ax = X_AXIS, ctr = best_x, thickness =  1.8 * STRIPE_WIDTH )
-model$show( LEFT_VIEW )
-make_figure( 'band_1' )
+##model$show( LEFT_VIEW )
+##make_figure( 'band_1' )
+
+# The slice is thick in the Z-direction
+# We are interested in the points along the outside of the pot,
+# so find the most dense cloud of points, and keep only that
+# very thin slice of the band
+model_data        <- model$get()
+histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
+best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]
+thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
+# Show the resulting profile
+# _____ Begin Plotting _____
+  png( './images/band_1.png' )
+    ggplot( thin_slice, aes( x = z, y = y )) +
+      geom_point()   +
+      xlim( 0, 0.6 ) +
+      ylim( 0, 0.6 )
+  dev.off()
+```
+
+    ## quartz_off_screen 
+    ##                 2
+
+``` r
+# _____ End Plotting _____
 ```
 
 <img src="./images/band_1.png" width="400">
 
 ``` r
-model_data        <- model$get()
-histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
-best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]
-thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
-
-#ggplot( thin_slice, aes( x = z, y = y )) +
-#  geom_point()   +
-#  xlim( 0, 0.6 ) +
-#  ylim( 0, 0.6 )
-
 CUSTOM_LIMITS_FOR_THIS_POTSHERD <- c( 0.1, 0.6 )
 df <- thin_slice[ ,c( 'y', 'z' ) ]
 df <- unique( df[ order( df[ , 'y' ] ), ] )
@@ -46,9 +63,8 @@ extrema <- critical_points( df, 0.001 )
 ###extrema <- extrema[ !extrema[ , 'direction' ] %in% c('rising','falling'), ]
 ###extrema <- extrema[ extrema[ , 'direction' ] %in% c( 'ridge', 'groove' ), ]
 extrema <- extrema[ extrema[ , 'direction' ] %in% 'ridge', ]
-```
 
-``` r
+# _____ Begin Plotting _____
 png( './images/sliver.png' )
 p <- ggplot( df, aes( x = z, y = y )) +
   geom_point() +
@@ -67,12 +83,7 @@ breaks_y <- g - g[ 1 ]
 h <- sort( round( extrema[ , 'z' ], 3 ))
 breaks_x <- h[ 3 ] - h
 breaks_x <- breaks_x[ 1 ]
-breaks_y
-```
 
-    ## [1] 0.000 0.121 0.325
-
-``` r
 p + u + v +
   xlab( "Radius" ) +
   ylab( 'Height' ) +
@@ -107,6 +118,10 @@ dev.off()
 
     ## quartz_off_screen 
     ##                 2
+
+``` r
+# _____ End Plotting _____
+```
 
 <img src="./images/sliver.png" width="400">
 
