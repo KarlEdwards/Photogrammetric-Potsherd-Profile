@@ -95,7 +95,6 @@ breaks_y <- g - g[ 1 ]
 h <- sort( round( extrema[ , 'z' ], 3 ))
 breaks_x <- h[ 3 ] - h
 breaks_x <- breaks_x[ 1 ]
-breaks_y
 
 p + u + v +
   xlab( "Radius" ) +
