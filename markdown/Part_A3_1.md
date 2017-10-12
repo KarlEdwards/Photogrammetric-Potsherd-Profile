@@ -71,6 +71,7 @@ make_figure( './images/end_view_1' )
 
 ``` r
 model$show( FRONT_VIEW )
+axis3d( 'x' )
 make_figure( './images/front_view' )
                                             #
 model$show( TOP_VIEW_C )

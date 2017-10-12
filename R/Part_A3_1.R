@@ -82,6 +82,7 @@ make_figure( './images/end_view_1' )
 
 #' ### Show the model from various vantage points
 model$show( FRONT_VIEW )
+axis3d( 'x' )
 make_figure( './images/front_view' )
                                             #
 model$show( TOP_VIEW_C )
