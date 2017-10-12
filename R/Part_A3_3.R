@@ -30,11 +30,11 @@ source( 'configuration.R' )
 #source( 'cache_model.R' )
 #source( 'profile_to_wireframe.R' )
 
-#' #### Retrieve Saved Perimeter Data
+#' ### Retrieve Saved Perimeter Data
 #+ estimate_base, echo = TRUE
 perimeter_data <- readRDS( PERIMETER_FILE )
 
-#' #### Plot perimeter data
+#' ### Plot perimeter data
 #+ plot_perimeter_data, echo = TRUE, include = FALSE
 #png( './images/perimeter_data.png' )
 #p <- ggplot( perimeter_data, aes( x = perimeter_x, y = perimeter_y, color = height )) +
@@ -50,7 +50,7 @@ ggsave(
   geom_point() +
   xlim( 0, 1 ) +
   ylim( 0, 1 )
-  , width = 5.000
+  , width = 5.00
   , height = 4.285
   , dpi = 1200
 )
@@ -58,7 +58,7 @@ ggsave(
 # -----------------------------------------------
 
 
-#' #### Estimate the center
+#' ### Estimate the center
 # Estimate the center for a given height
 # by choosing two points along the perimeter of the pot
 # and finding the intersection of

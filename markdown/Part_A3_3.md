@@ -6,17 +6,17 @@
 Find the center of the base, i.e., axis of rotation
 ---------------------------------------------------
 
-#### Retrieve Saved Perimeter Data
+### Retrieve Saved Perimeter Data
 
 ``` r
 perimeter_data <- readRDS( PERIMETER_FILE )
 ```
 
-#### Plot perimeter data
+### Plot perimeter data
 
 <img src="./images/perimeter_data.png" >
 
-#### Estimate the center
+### Estimate the center
 
 ``` r
 # Estimate the center for a given height
