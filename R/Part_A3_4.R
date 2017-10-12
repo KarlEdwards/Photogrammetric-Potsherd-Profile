@@ -78,6 +78,8 @@ thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
 
 
 #' ### How far apart are the ridges?
+
+
 # Establish plot limits
 plot_limit_lo <- round( min( thin_slice[ , 'y' ] ), 3 )
 plot_limit_hi <- round( max( thin_slice[ , 'y' ] ), 3 )
