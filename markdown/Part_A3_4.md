@@ -53,7 +53,12 @@ thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
 <img src="./images/band_1.png" width="400">
 
 ``` r
-CUSTOM_LIMITS_FOR_THIS_POTSHERD <- c( 0.1, 0.6 )
+CUSTOM_LIMITS_FOR_THIS_POTSHERD <- c(
+    round( min(thin_slice[ ,'y']),3)
+  , round( max(thin_slice[ ,'y']),3)
+)
+
+#c( 0.1, 0.6 )
 df <- thin_slice[ ,c( 'y', 'z' ) ]
 df <- unique( df[ order( df[ , 'y' ] ), ] )
 df <- df[ df[ ,'y' ] > CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 1 ] & df[ , 'y' ] < CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 2 ], ]
@@ -85,8 +90,8 @@ breaks_x <- h[ 3 ] - h
 breaks_x <- breaks_x[ 1 ]
 
 p + u + v +
-  xlab( "Radius" ) +
-  ylab( 'Height' ) +
+  xlab( 'Radius   [ mm ]' ) +
+  ylab( 'Height   [ mm ]' ) +
   theme(
     axis.title = element_text(
       colour = "darkblue"
@@ -105,12 +110,12 @@ p + u + v +
   )
 ) +
   scale_y_continuous( 
-      breaks = c( 0, round( extrema[,'y'], 3 ), CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 2 ] )
-    , labels = c( 0, breaks_y                 , CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 2 ] )
+      breaks = c( 0, round( extrema[,'y'], 3 ) )
+    , labels = c( 0, round( SCALE_FACTOR * breaks_y, 0 ))
   ) +
   scale_x_continuous(
       breaks = c( 0, round( extrema[ HIDE_CLOSE_LABELS,'z' ], 3 ))
-    , labels = c( '', breaks_x, 0 )
+    , labels = c( '', round( SCALE_FACTOR * breaks_x, 0 ), 0 )
   )
 
 dev.off()
