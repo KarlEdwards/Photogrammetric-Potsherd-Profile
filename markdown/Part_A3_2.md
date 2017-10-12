@@ -3,17 +3,18 @@
 
 #### [Top](../README.md)
 
-### Estimate the radius at several elevations
+Estimate the radius at several elevations
+-----------------------------------------
 
-#### Retrieve Saved Model
+### Retrieve Saved Model
 
 ``` r
 model <- make_model( readRDS( MODEL_FILE ) )
 ```
 
-#### Get perimeter data
+### Get perimeter data
 
-#### Clean the data
+### Clean the data
 
 ``` r
 perimeter_matrix <- matrix(
@@ -140,7 +141,7 @@ perimeter
     ## 105   0.50        0.75 0.020640360
     ## 106   0.50        0.80 0.035515360
 
-#### Save the results
+### Save the results
 
 ``` r
 saveRDS( perimeter, PERIMETER_FILE )

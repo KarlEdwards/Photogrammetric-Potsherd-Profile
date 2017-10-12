@@ -17,7 +17,7 @@
 #' bibliography: potsherd.bibtex
 #' ---
 
-#' ### Estimate the radius at several elevations
+#' ## Estimate the radius at several elevations
 
 #+ source_functions, echo = FALSE, include = FALSE
 # Load Functions
@@ -28,12 +28,12 @@ source( 'configuration.R' )
 source( 'cache_model.R' )
 source( 'profile_to_wireframe.R' )
 
-#' #### Retrieve Saved Model
+#' ### Retrieve Saved Model
 #+ retrieve_model
 model <- make_model( readRDS( MODEL_FILE ) )
 
 
-#' #### Get perimeter data
+#' ### Get perimeter data
 #+ get_perimeter, echo = TRUE, include = FALSE, result = 'hide'
 map(
     WIREFRAME_HEIGHTS                       # for each height, h
@@ -50,7 +50,7 @@ map(
 ) %>% unlist() -> perimeter_data
 
 
-#' #### Clean the data
+#' ### Clean the data
 #+ clean_data, echo = TRUE, include = TRUE
 perimeter_matrix <- matrix(
     perimeter_data
@@ -67,6 +67,6 @@ perimeter <- data.frame( perimeter_matrix[ valid_points, ] )
 perimeter
 
 
-#' #### Save the results
+#' ### Save the results
 #+ save_perimeter, echo = TRUE
 saveRDS( perimeter, PERIMETER_FILE )
