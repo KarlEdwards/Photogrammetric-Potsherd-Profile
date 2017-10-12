@@ -71,7 +71,7 @@ make_figure( './images/end_view_1' )
 
 ``` r
 model$show( FRONT_VIEW )
-axis3d( 'x', pos=c( NA, -0.02, 0.0 ), col = "darkgrey", at=c(0.3, 0.5))
+axis3d( 'x', pos=c( NA, -0.02, 0.0 ), col = c( 'red', 'black' ), at=c( 0.3, 0.6 ))
 make_figure( './images/front_view' )
                                             #
 model$show( TOP_VIEW_C )
