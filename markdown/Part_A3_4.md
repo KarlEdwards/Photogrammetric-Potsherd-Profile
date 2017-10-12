@@ -17,7 +17,7 @@ vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 
 Recall that the front view looks like this:
 
-<img src="./images/front_view.png" width="300">
+<img src="./images/front_view.png" width="500">
 
 ``` r
 best_x  <- best_slice( model$get(), X_AXIS )
