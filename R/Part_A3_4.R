@@ -35,62 +35,57 @@ center  <- medians[ 2:3 ]
 model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 
-# Find the tallest cross-section
+#' #### Find the tallest cross-section
 best_x  <- best_slice( model$get(), X_AXIS )
-
 #' The tallest cross-section is at X = ```r best_x```
 
-# Slice the model at this point
+#' #### Slice the model at this point
+#+ show_thick, echo = TRUE, include = FALSE
 model$get_band( ax = X_AXIS, ctr = best_x, thickness =  1.8 * STRIPE_WIDTH )
-##model$show( LEFT_VIEW )
-##make_figure( 'band_1' )
+model$show( LEFT_VIEW )
+make_figure( 'thick_band' )
+#' <img src="./images/thick_band.png" width="400">
+# -----------------------------------------------
 
-# The slice is thick in the Z-direction
-# We are interested in the points along the outside of the pot,
-# so find the most dense cloud of points, and keep only that
-# very thin slice of the band
+
+#' The slice is thick in the Z-direction
+#' We are interested in the points along the outside of the pot,
+#' so find the most dense cloud of points, and keep only that
+#' very thin slice of the band
 model_data        <- model$get()
 histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
 best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]
 thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
+
+#+ show_thin, echo = TRUE, include = FALSE
 # Show the resulting profile
-# _____ Begin Plotting _____
-  png( './images/band_1.png' )
+  png( './images/thin_band.png' )
     ggplot( thin_slice, aes( x = z, y = y )) +
       geom_point()   +
       xlim( 0, 0.6 ) +
       ylim( 0, 0.6 )
   dev.off()
-# _____ End Plotting _____
-#' <img src="./images/band_1.png" width="400">
+#' <img src="./images/thin_band.png" width="400">
 # -----------------------------------------------
 
 
-CUSTOM_LIMITS_FOR_THIS_POTSHERD <- c(
-    round( min(thin_slice[ ,'y']),3)
-  , round( max(thin_slice[ ,'y']),3)
-)
+# Establish plot limits
+plot_limit_lo <- round( min( thin_slice[ , 'y' ] ), 3 )
+plot_limit_hi <- round( max( thin_slice[ , 'y' ] ), 3 )
 
-#c( 0.1, 0.6 )
+#+ find_extrema, echo = TRUE
 df <- thin_slice[ ,c( 'y', 'z' ) ]
 df <- unique( df[ order( df[ , 'y' ] ), ] )
-df <- df[ df[ ,'y' ] > CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 1 ] & df[ , 'y' ] < CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 2 ], ]
-
+df <- df[ df[ ,'y' ] > plot_limit_lo & df[ , 'y' ] < plot_limit_hi, ]
 extrema <- critical_points( df, 0.001 )
-
-###extrema <- extrema[ !extrema[ , 'direction' ] %in% c('rising','falling'), ]
-###extrema <- extrema[ extrema[ , 'direction' ] %in% c( 'ridge', 'groove' ), ]
 extrema <- extrema[ extrema[ , 'direction' ] %in% 'ridge', ]
 
-# _____ Begin Plotting _____
-png( './images/sliver.png' )
 p <- ggplot( df, aes( x = z, y = y )) +
   geom_point() +
-  expand_limits( x = CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 2 ] , y = CUSTOM_LIMITS_FOR_THIS_POTSHERD[ 2 ] )
+  expand_limits( x = plot_limit_hi , y = plot_limit_hi )
 
 u <- ( seq( nrow(extrema)) %>% map( ~geom_hline( yintercept = extrema[ ., 'y' ], colour = 'red', linetype=2) ) )
 v <- ( seq( nrow(extrema)) %>% map( ~geom_vline( xintercept = extrema[ ., 'z' ], colour = 'red', linetype=2) ) )
-#p + u + v
 
 # Two of the ridges have nearly the same radius;
 # suppress the label for one to make the other label visible
@@ -102,6 +97,8 @@ h <- sort( round( extrema[ , 'z' ], 3 ))
 breaks_x <- h[ 3 ] - h
 breaks_x <- breaks_x[ 1 ]
 
+#+ show_sliver, echo = TRUE, include = FALSE
+png( './images/sliver.png' )
 p + u + v +
   xlab( 'Radius   [ mm ]' ) +
   ylab( 'Height   [ mm ]' ) +
