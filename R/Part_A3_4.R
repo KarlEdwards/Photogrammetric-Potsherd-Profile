@@ -34,24 +34,36 @@ medians <- radii %>% map_dbl( ~median( . ))
 center  <- medians[ 2:3 ]
 model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
+
+# Find the tallest cross-section
 best_x  <- best_slice( model$get(), X_AXIS )
 best_x
+
+# Slice the model at this point
 model$get_band( ax = X_AXIS, ctr = best_x, thickness =  1.8 * STRIPE_WIDTH )
-model$show( LEFT_VIEW )
-make_figure( 'band_1' )
-#' <img src="./images/band_1.png" width="400">
-# -----------------------------------------------
+##model$show( LEFT_VIEW )
+##make_figure( 'band_1' )
 
-
+# The slice is thick in the Z-direction
+# We are interested in the points along the outside of the pot,
+# so find the most dense cloud of points, and keep only that
+# very thin slice of the band
 model_data        <- model$get()
 histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
 best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]
 thin_slice        <- as.data.frame( get_band( model_data, 1, best_mid ))
+# Show the resulting profile
+# ---- Begin Plotting ----
+  png( './images/band_1.png' )
+    ggplot( thin_slice, aes( x = z, y = y )) +
+      geom_point()   +
+      xlim( 0, 0.6 ) +
+      ylim( 0, 0.6 )
+  dev.off()
+# ---- End Plotting ----
+#' <img src="./images/band_1.png" width="400">
+# -----------------------------------------------
 
-#ggplot( thin_slice, aes( x = z, y = y )) +
-#  geom_point()   +
-#  xlim( 0, 0.6 ) +
-#  ylim( 0, 0.6 )
 
 CUSTOM_LIMITS_FOR_THIS_POTSHERD <- c( 0.1, 0.6 )
 df <- thin_slice[ ,c( 'y', 'z' ) ]
