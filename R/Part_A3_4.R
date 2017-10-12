@@ -36,8 +36,13 @@ model   <- make_model( readRDS( MODEL_FILE ) )
 vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 
 #' #### Find the tallest cross-section
+#' Recall that the front view looks like this:
+#' <img src="./images/front_view.png" width="300">
+
+
 best_x  <- best_slice( model$get(), X_AXIS )
 #' The tallest cross-section is at X = ```r best_x```
+
 
 #' #### Slice the model at this point
 #+ show_thick, echo = TRUE, include = FALSE
@@ -51,7 +56,7 @@ make_figure( './images/thick_band' )
 #' The slice is thick in the Z-direction
 #' We are interested in the points along the outside of the pot,
 #' so find the most dense cloud of points, and keep only that
-#' very thin slice of the band
+#' very thin slice of the band.
 model_data        <- model$get()
 histogram_buckets <- model_data[ , 'x'] %>% hist( plot = FALSE )
 best_mid          <- as.list( histogram_buckets )[[ 'mids' ]][ which.max( histogram_buckets$counts ) ]

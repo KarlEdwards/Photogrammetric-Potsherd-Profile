@@ -15,6 +15,9 @@ vp      <- viewpoint( list( theta = 15, phi = 10, fov = 0, zoom = 0.75 ))
 
 #### Find the tallest cross-section
 
+Recall that the front view looks like this:
+<img src="./images/front_view.png" width="300">
+
 ``` r
 best_x  <- best_slice( model$get(), X_AXIS )
 ```
@@ -27,7 +30,7 @@ The tallest cross-section is at X = `0.275`
 The slice is thick in the Z-direction
 We are interested in the points along the outside of the pot,
 so find the most dense cloud of points, and keep only that
-very thin slice of the band
+very thin slice of the band.
 
 ``` r
 model_data        <- model$get()
