@@ -1,8 +1,7 @@
 #' A caching Function
 #'
 #' Create a model matrix, which is really a list, containing functions to...
-#' * move the model
-#' * rotate the model
+#' * move, rotate, calculate, clip, show, ... the model
 #'
 #' @param model_data numeric vector contents.
 #' @keywords caching
@@ -12,49 +11,21 @@
 #+ cache_model, echo = TRUE
 make_model <- function( model_data ){
   cache       <- NULL                                         # Begin with an empty model
-  get         <- function() name_axes( model_data )           # Return the model data
+
   cache_it    <- function( model_data ) cache <<- model_data  # Cache the model data
-  data_length <- function() cache                             # Determine the length of the model data matrix
-  tilt_up     <- function( angle ){
-    model_data <<- rotate3d( model_data, angle * pi / 180, 1, 0, 0 )
-  }
-  rotate_about_x     <- function( angle ){
-    model_data <<- rotate3d( model_data, angle * pi / 180, 1, 0, 0 )
-  }
-  rotate_about_y     <- function( angle ){
-    model_data <<- rotate3d( model_data, angle * pi / 180, 0, 1, 0 )
-  }
-  rotate_about_z     <- function( angle ){
-    model_data <<- rotate3d( model_data, angle * pi / 180, 0, 0, 1 )
-  }
-  move_up     <- function( distance ){
-    model_data[ ,2 ] <<- model_data[ ,2 ] + distance
-  }
-  move_down   <- function( distance ){
-    model_data[ ,2 ] <<- model_data[ ,2 ] - distance
-  }
-  move_right     <- function( distance ){
-    model_data[ ,1 ] <<- model_data[ ,1 ] + distance
-  }
-  move_left   <- function( distance ){
-    model_data[ ,1 ] <<- model_data[ ,1 ] - distance
-  }
-  move_forward     <- function( distance ){
-    model_data[ ,3 ] <<- model_data[ ,3 ] + distance
-  }
-  move_backward   <- function( distance ){
-    model_data[ ,3 ] <<- model_data[ ,3 ] - distance
-  }
-  scale_it        <- function( scale_factor ){
-    model_data[ ,1 ] <<- scale_factor * model_data[ ,1 ]
-    model_data[ ,2 ] <<- scale_factor * model_data[ ,2 ]
-    model_data[ ,3 ] <<- scale_factor * model_data[ ,3 ]
-  }
-  
+
+  calculate   <- function( f ) apply( model_data, 2, f )
+
   # Cut off the top/bottom, front/back, or left/right sides of the model
   clip_at <- function( ax=1, mn=0.3, mx=0.6 ){
     model_data <<- model_data[ model_data[ ,ax ] > mn & model_data[ ,ax ] < mx, ]
   }
+
+  data_length <- function() cache                             # num elements in matrix
+
+  extents     <- function() apply( model_data, 2, function( x ) max( x ) - min( x ) )
+
+  get         <- function() name_axes( model_data )           # Return the model data
 
   # Clip a thin band out of the middle, and keep that portion that was removed
   get_band        <- function( ax, ctr, thickness ){
@@ -62,32 +33,52 @@ make_model <- function( model_data ){
     mx <- ctr + 0.5 * thickness
     model_data <<- model_data[ model_data[ ,ax ] > mn & model_data[ ,ax ] < mx, ]
   }
-  show         <- function( config, limits=c(0,1) ){
+
+  move_forward_backward <- function( distance ) model_data[ ,3 ] <<- model_data[ ,3 ] + distance
+  move_right_left       <- function( distance ) model_data[ ,1 ] <<- model_data[ ,1 ] + distance
+  move_up_down          <- function( distance ) model_data[ ,2 ] <<- model_data[ ,2 ] + distance
+
+  rotate_on   <- function( ax, angle ){
+   switch( ax
+     , x =  model_data <<- rotate3d( model_data, angle * pi / 180, 1, 0, 0 )
+     , y =  model_data <<- rotate3d( model_data, angle * pi / 180, 0, 1, 0 )
+     , z =  model_data <<- rotate3d( model_data, angle * pi / 180, 0, 0, 1 )
+   )
+  }
+  scale_it    <- function( scale_factor ){
+    model_data[ ,1 ] <<- scale_factor * model_data[ ,1 ]
+    model_data[ ,2 ] <<- scale_factor * model_data[ ,2 ]
+    model_data[ ,3 ] <<- scale_factor * model_data[ ,3 ]
+  }
+  
+  show         <- function( config, lims=rep( c( -1, 1 ), 3 ), size = 2.0 ){
     clear3d()
-    plot3d( name_axes( model_data ), xlim = limits , ylim = limits , zlim = limits )
+    par3d( cex = size )
+    plot3d( 
+        name_axes( model_data )
+      , xlim = lims[ 1:2 ] , ylim = lims[ 3:4 ] , zlim = lims[ 5:6 ]
+      , axes = FALSE, box = FALSE
+    )
+    abclines3d( x = matrix( 0, ncol = 3 ), a = diag( 3 ), col = 'black', lwd = 3 )
     view( config )
     background( 'white' )
   }
 
   # Return the list of functions
   list(
-      move_up = move_up
-    , move_down = move_down
-    , move_right = move_right
-    , move_left = move_left
-    , move_forward = move_forward
-    , move_backward = move_backward
-    , scale_it = scale_it
-    , tilt_up = tilt_up
-    , rotate_about_x = rotate_about_x
-    , rotate_about_y = rotate_about_y
-    , rotate_about_z = rotate_about_z
-    , get = get
-    , cache_it = cache_it
-    , data_length = data_length
-    , clip_at = clip_at
-    , get_band = get_band
-    , show = show
+      cache_it              = cache_it
+    , calculate             = calculate
+    , clip_at               = clip_at
+    , data_length           = data_length
+    , extents               = extents
+    , get                   = get
+    , get_band              = get_band
+    , move_forward_backward = move_forward_backward
+    , move_right_left       = move_right_left
+    , move_up_down          = move_up_down
+    , rotate_on             = rotate_on
+    , show                  = show
+    , scale_it              = scale_it
   )
 }
 
@@ -116,17 +107,3 @@ cache_model <- function( model_data, ... ){
   model_data$cache_it( cache )       # Remember the model_data
   cache                              # Return the cached model_data
 }
-
-# Examples
-# model <- NULL
-# model <- make_model( readSTL( filename, plot=FALSE ) )
-# model_matrix <- model$get()
-# cache_model( model )
-# print( model$data_length())
-# model$data_length()
-# model$move_up( 0.25 )
-# model$move_down( 0.25 )
-# model$move_left( 0.25 )
-# model$move_right( 0.25 )
-# model$move_forward( 0.25 )
-# model$move_backward( 0.25 )

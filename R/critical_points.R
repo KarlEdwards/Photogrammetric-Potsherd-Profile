@@ -18,10 +18,10 @@ critical_points <- function( data, delta ){
   base_y    <- data[ 1, 2 ]
 
   # Find the distance along the artifact axis of rotation between A and B
-  delta_y   <- function() data[ point_B , 'y' ] - data[ point_A, 'y' ]
+  delta_y   <- function() data[ point_B , 1 ] - data[ point_A, 1 ]
 
   # Find the distance along the artifact radius between A and B
-  delta_z   <- function() data[ point_B , 'z' ] - data[ point_A, 'z' ]
+  delta_z   <- function() data[ point_B , 2 ] - data[ point_A, 2 ]
 
   # Keep going until the last point has been examined
   more_rows <- function() point_B < N
@@ -61,10 +61,10 @@ critical_points <- function( data, delta ){
 
     if( abs( delta_z() ) >= delta ){
       EMPIRICALLY_DETERMINED_MAGIC_NUMBER <- 0.25  # Why not 0.5 * distance between points, i.e., mean?
-      y[ i ] <- data[ point_A, 'y' ] + EMPIRICALLY_DETERMINED_MAGIC_NUMBER * ( data[ point_B, 'y' ] - data[ point_A, 'y' ] )
-      z[ i ] <- data[ point_A, 'z' ] - EMPIRICALLY_DETERMINED_MAGIC_NUMBER * ( data[ point_B, 'z' ] - data[ point_A, 'z' ] )
-##      y[ i ] <- data[ point_A, 'y' ]
-##      z[ i ] <- data[ point_A, 'z' ]
+      y[ i ] <- data[ point_A, 1 ] + EMPIRICALLY_DETERMINED_MAGIC_NUMBER * ( data[ point_B, 1 ] - data[ point_A, 1 ] )
+      z[ i ] <- data[ point_A, 2 ] - EMPIRICALLY_DETERMINED_MAGIC_NUMBER * ( data[ point_B, 2 ] - data[ point_A, 2 ] )
+##      y[ i ] <- data[ point_A, 1 ]
+##      z[ i ] <- data[ point_A, 2 ]
       m[ i ] <- slope()
       d[ i ] <- set_direction()
 

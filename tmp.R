@@ -1,4 +1,3 @@
-#+ require_libraries, echo = FALSE, include = FALSE
 # Load Libraries
 require( rgl )
 require( ggplot2 )
@@ -9,14 +8,8 @@ require( tibble )
 require( lattice )
 require( png )
 
-# Paths and Files
-FIGURES_PATH   <- './images/'
-STEREOLITHOGRAPHY_FILE <- './R/stereolithograph.stl'
-MODEL_FILE     <- 'model.RDS'
-PERIMETER_FILE <- 'perimeter.RDS'
-
-# Scaling to Real-World Units
-SCALE_FACTOR   <- 8.0 * 25.4
+# Paths
+FIGURES_PATH <- './images/'
 
 # Names for convenience and readability
 X_AXIS         <- 1
@@ -36,10 +29,19 @@ name_axes <- function( m ){
 STRIPE_WIDTH   <- 0.001
 STRIPE_TOL     <- 0.0005
 BASE_RADIUS    <- 0.3
+SCALE_FACTOR   <- 8.0 * 25.4
+
+#' #### Use these elevations and X-coordinates
+#  --- mini-configuration ---
 WIREFRAME_HEIGHTS <- seq( 0.10, 0.60, by=0.05 )
 POINTS_ALONG_X    <- seq( 0.20, 0.80, by=0.05 )
 
-# Different ways of looking at the model
+
+# Data file
+STEREOLITHOGRAPHY_FILE <- './R/stereolithograph.stl'
+MODEL_FILE     <- 'model.RDS'
+PERIMETER_FILE <- 'perimeter.RDS'
+
 TOP_VIEW_A     <- viewpoint( list( theta=   0, phi=  90, fov=10, zoom=1 ))
 TOP_VIEW_B     <- viewpoint( list( theta=  90, phi=  90, fov=0, zoom=1 ))
 TOP_VIEW_C     <- viewpoint( list( theta= 180, phi=  90, fov=0, zoom=1 ))
@@ -52,8 +54,6 @@ BACK_VIEW      <- viewpoint( list( theta=   0, phi=   0, fov=0, zoom=1 ))
 FRONT_VIEW     <- viewpoint( list( theta= 170, phi=   0, fov=10, zoom=1 ))
 LEFT_VIEW      <- viewpoint( list( theta= 260, phi=   0, fov=10, zoom=1 ))
 RIGHT_VIEW     <- viewpoint( list( theta=  90, phi=   0, fov=0, zoom=1 ))
-
 TOP_VIEW       <- TOP_VIEW_A
 BOTTOM_VIEW    <- BOTTOM_VIEW_A
-
 STANDARD_VIEWS <- list( LEFT_VIEW, FRONT_VIEW, TOP_VIEW )

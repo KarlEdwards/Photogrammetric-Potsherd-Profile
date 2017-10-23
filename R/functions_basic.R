@@ -5,8 +5,42 @@
 # Get the data; don't plot
 load_data <- function( filename ) name_axes( readSTL( filename, plot=FALSE ))
 
-# Move the model into the corner of [ X, Y, Z ] = [ 0, 0, 0 ]
-##DELETE center <- function( model ) name_axes( apply( model, 2, function(f) f - min( f )))
+box_size <- function() round( reduce( model$calculate( function(f) max(f)-min(f) ), `*` ), 4 )
+
+smallest_box <- function( ax, tilt_degrees ){
+  steps <- 100 / tilt_degrees  # Take as many steps as needed to make sure the minimum occurs at least once, e.g., 100 degrees
+
+  # At each position, check the box volume
+  1:steps %>%
+    map_dbl( ~{ model$rotate_on( ax=ax, angle = tilt_degrees ); box_size()}) -> rots
+  # Then back up at rotate only as far as the minimum volume
+  model$rotate_on( 
+      ax    = ax
+    , angle = ( tilt_degrees * ( which.min( rots ) - steps ))
+  )
+##  plot( rots )
+  box_size()
+}
+
+get_one_grob <- function( grobname ){
+  rasterGrob(
+      as.raster(
+        readPNG( grobname )
+      )
+    , interpolate = FALSE
+  ) 
+}
+
+multi_view <- function( groblist ){
+  map( groblist,
+    ~get_one_grob(
+      paste0( FIGURES_PATH, .x, '.png' )
+    )
+  ) -> grobs
+  marrangeGrob( grobs, nrow=1, ncol=3, top = NULL )  
+  #marrangeGrob(grobs, ncol, nrow, ..., top = quote(paste("page", g, "of", pages)))
+
+}
 
 # Cut off the top/bottom, front/back, or left/right sides of the model
 clip_at <- function( obj, ax, mn, mx ) name_axes( obj[ obj[ ,ax ] > mn & obj[ ,ax ] < mx, ] )
@@ -25,6 +59,7 @@ in_a_box <- function(){
     , nticks = 3
   )
 }
+
 
 view <- function( vp=cfg ) rgl.viewpoint(
     theta = vp$get()$theta
@@ -48,7 +83,11 @@ see             <- function( obj, config, limits=c(0,1) ){
 reference_point <- function( coords=c(0,0,0), ref_color='red' ) points3d( coords[1], coords[2], coords[3], col = ref_color )
 move_it         <- function( obj, dx, dy, dz ) assign( obj, translate3d( obj=obj, x=dx, y=dy, z=dz ), envir = .GlobalEnv )
 
-make_figure <- function( caption ) rgl.snapshot( filename = paste0( caption, '.png' ))
+make_figure <- function( fun, args, file_name ){
+cat( sprintf( '\nmake_figure'))
+  do.call( fun, args )
+  rgl.snapshot( filename = paste0( FIGURES_PATH, file_name, '.png' ))
+}
 
 # Identify the slice having the highest density of points
 best_slice <- function( model, ax ){
@@ -169,4 +208,21 @@ get_slope2D <- function( P1xy, P2xy ){
   }
   #noquote( slopeMsg )
   slopeVal
+}
+
+# Save images of multiple views of the model in multiple files
+show_multi_view <- function( base_name, mdl ){
+  # This function produces side effects:
+  #   Create an image for each STANDARD VIEW
+  #   Create a file for each image
+  #   Name the files as base_name + index
+  filenames <- 1:length( STANDARD_VIEWS ) %>% paste0( base_name, . )  %>% as.list()
+  pwalk(                   # For each VIEW and FILE NAME...
+      list(                #   create the image and save it in the file
+          STANDARD_VIEWS  
+      , filenames
+    )
+  , function( y, z ) make_figure( fun = mdl$show, args = list( y ), file_name = z )
+)
+  multi_view( filenames )
 }
