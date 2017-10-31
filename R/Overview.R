@@ -441,30 +441,5 @@ grid::grid.raster( readPNG( paste0( FIGURES_PATH, 'dimensioned_profile.png' ) ) 
 #' [ ] Test and refine the measurement functions
 #+
 #' [ ] Create an R package and associated vignette
-#' \newpage
-
-#+
-#' # Appendix A: Configuration
-#+
-#' ***
-#+ r, code=readLines( './R/configuration.R' )
-#+
-#' ***
-#' \newpage
-
-#+
-#' # Appendix B: Model Functions
-#' ***
-#+ r, code=readLines( './R/cache_model.R' )
-#+
-#' ***
-#' \newpage
-
-#+
-#' # Appendix C: Cross-Sectioning Functions
-#' ***
-#+ r, code=readLines( './R/functions_slicing.R' )
-#+
-#' ***
 
 #' #
