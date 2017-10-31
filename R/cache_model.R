@@ -61,7 +61,7 @@ make_model <- function( model_data ){
     )
     abclines3d( x = matrix( 0, ncol = 3 ), a = diag( 3 ), col = 'black', lwd = 3 )
     view( config )
-    background( 'white' )
+    rgl.bg( 'white' )
   }
 
   # Return the list of functions
