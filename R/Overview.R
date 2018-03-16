@@ -414,7 +414,7 @@ grid::grid.raster( readPNG( paste0( FIGURES_PATH, 'dimensioned_profile.png' ) ) 
 #' # Conclusion
 #+
 #' ## A. Summary
-#' This document describes in some detail the steps to photograph a potsherd and generate a mathematical model from the resulting images, and, in much less detail, suggests how to automatically measure to object represented by the model. The R source code is available on github and an R package is will be available soon. A number of simplifications, described below, accelerated this initial draft.
+#' This document describes in some detail the steps to photograph a potsherd and generate a mathematical model from the resulting images, and, in much less detail, suggests how to automatically measure to object represented by the model. The R source code is available on github and an R package will be available soon. A number of simplifications, described below, accelerated this initial draft.
 
 #+
 #' ## B. Item-Specific Configuration
